@@ -1,0 +1,116 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>A little hack</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="A little hack" href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>A little hack</h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 3 July 2012</p>
+<h2>Emacs's <strong>today</strong> function</h2>
+
+<p><a href="http://mikeshea.net/pueblo.html">pueblo</a> needs a header as follows to make every post nice.</p>
+
+<pre class="prettyprint" ><code>Title: A little hack
+Author: doubletony
+Date:  3 July 2012
+</code></pre>
+
+<p>However, manually typing the repeated information seems not reasonable
+to me :) Thus, the first thing came up to me was how to avoid typing
+the date. Thanks to
+<a href="http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
+">this post</a>, I got my today function working nicely.</p>
+
+<pre class="prettyprint" ><code>(defun today ()
+"Insert string for today's date nicely formatted in American style,
+e.g. Sunday, September 17, 2000."
+      (interactive)                 ; permit invocation in minibuffer
+      (insert (format-time-string "%e %B %Y")))
+</code></pre>
+
+<h2>YASnippet</h2>
+
+<p>After this tiny progress, it's time to make the entire header info be
+a snippet. <a href="https://github.com/capitaomorte/yasnippet">YASnippet</a>
+does have several snippet for markdown-mode. It should be easy to
+follow the snippet of "<em>ol</em>" (order list) to create my snippet for
+header. Shortly, I came up the following snippet:</p>
+
+<pre class="prettyprint" ><code># name: head for post on pblog
+# key: head
+# --
+Title: ${}
+Author: doubletony
+Date: `(today)`
+
+$0
+</code></pre>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>

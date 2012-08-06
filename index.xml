@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+xmlns:atom="http://www.w3.org/2005/Atom"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+>
+
+<channel>
+<title>Watch back!</title>
+<link>http://www.egr.msu.edu/~wangyua6/</link>
+<description>Why serious?!</description>
+<pubDate>Mon, 06 Aug 2012 03:22:35 GMT</pubDate>
+<language>en</language>
+<atom:link href="http://www.egr.msu.edu/~wangyua6/index.xml" rel="self" type="application/rss+xml" />
+
+<item>
+<title>Last non-zero digit of a factorial</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0012.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0012.html</guid>
+<pubDate>Sun, 05 Aug 2012 06:00:00 +0000</pubDate>
+<description>What's the problem?  Given a number $ n $, find the last non-zero digit of $ n! </description>
+<content:encoded>
+<![CDATA[<h2>What's the problem?</h2>
+
+<p>Given a number $ n $, find the last non-zero digit of $ n! $. For example, given 5, the
+last non-zero digit is 2. (since $ 5! = 120 $.)</p>
+
+<h2>Emm, brute-force first.</h2>
+
+<p>Well, it seems not an easy problem. The factorial increases fast, so the brute-force method 
+as following will explode very fast. It's overflow when n is only as small as 20.</p>
+
+<pre class="prettyprint" ><code>int bruteLastNonzerodigit(int n)
+{
+     int factorial = 1;
+
+     for (int i = 1; i &lt;= n; i++)
+     {
+          factorial *= i;
+     }
+
+     while( (factorial % 10) == 0 )
+     {
+          factorial /= 10;
+     }
+     return factorial % 10;
+}
+</code></pre>
+
+<h2>A better one.</h2>
+
+<p>So, if we think a bit deeply, we'll find that we are not necessary to store the entire result of a factorial.
+What if we can store a portion of the several digits from last non-zero digit? And take care the multipler of 5
+since zero of a factorial is produced by the factor of 5. For example, $5! = \cdots 0$, $10! = \cdots 00$. 
+Thus, we only need to keep a small portion
+of last non-zero digits.</p>
+
+<pre class="prettyprint" ><code>int getFiveOrder(int &amp;n)
+{
+     // we need change n
+     int count = 0;
+     while ( (n % 5) == 0  )
+     {
+          count += 1;
+          n /= 5;
+     }
+     return count;
+}
+
+int lastNonzeroDigit(int n)
+{
+     int lastPortion = 1;
+
+     for( int i = 1; i &lt;= n; i++ )
+     {
+          int remain = i;
+          int fiveOrder = getFiveOrder(remain);
+          int divider = 1&lt;&lt;fiveOrder;
+          lastPortion /= divider;
+          lastPortion *= remain;
+          if (lastPortion &lt; 0)
+          {
+               cout&lt;&lt;"Warnning: overflow..\n";
+          }
+          lastPortion = lastPortion % 10000000;
+     }
+
+     return lastPortion % 10;
+}
+</code></pre>
+
+<p>It's a little better than the brute-force version. However, it's still exploded around 250.
+The reason is not difficult to find: we can only keep a very limited last portion (% 10000000).
+And it's still a waste.</p>
+
+<h2>Now, any better one?</h2>
+
+<p>So, is there any better one? Yes. If we are given a number of the format $ n = a \cdot b \cdot c $,
+the last digit also can be computed as ( ((a % 10) * (b % 10) * (c % 10)) % 10). So can we borrow the
+same idea to compute the last non-zero digit. For instance, if we have a function $ f $, where $f(n)$
+will give us the last non-zero digit of $ n $, then can we compute $ f(abc)= f( f(a) f(b) f(c) ) $?</p>
+
+<p>Unfortunately, the answer is no. For example $n = 12 \cdot 5$, $f(12 \cdot 5) = 6$, while $f(f(12)f(5))=1$.
+Let's take a look why it's not working as we expected. The reason is that we have a pair of 2 and 5, which
+will create a 0 at the end. Thus, if we get rid of pair of 2 and 5 from $n$, then, we should be safe to compute
+last digit as previous. Thus, we have the following program, which works better.</p>
+
+<pre class="prettyprint" ><code>int getOrder(int &amp;n, int d)
+{
+     int count = 0;
+     while ( (n % d) == 0  )
+     {
+          count += 1;
+          n /= d;
+     }
+     return count;
+}
+
+int lastNonzeroDigit(int n)
+{
+     int twoOrderCount = 0; // we only need count the order of 2, think it why?
+     int lastDigit = 1;
+
+     for( int i = 1; i &lt;= n; i++ )
+     {
+          int remain = i;
+          int fiveOrder = getOrder(remain, 5);
+          int twoOrder = getOrder(remain, 2);
+          twoOrderCount += (twoOrder - fiveOrder);
+          lastDigit = (lastDigit * remain % 10);
+     }
+
+     for (int i = 0; i &lt; twoOrderCount; i++)
+     {
+          lastDigit = ( lastDigit * 2 ) % 10;
+     }
+     return lastDigit;
+}
+</code></pre>
+
+<p>This piece of code works nice for the input n as large as 10000000 within a blink. 
+However, the story is not end. It takes a while on my computer to get the result of 100000000.
+Can we improve it from the aspect of time-complexity? The answer is <em>YES</em> but there is not enough
+space in the margin to write it :)</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Recommend a decent music radio</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0011.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0011.html</guid>
+<pubDate>Fri, 03 Aug 2012 06:00:00 +0000</pubDate>
+<description>Jing.fm  Jing.fm is yet another online music radio. However, the selling point i</description>
+<content:encoded>
+<![CDATA[<h2>Jing.fm</h2>
+
+<p><a href="http://jing.fm">Jing.fm</a> is yet another online music radio. However, the selling point is its HD music. 
+So far, it feeds me well. If you're also interested, the following invitation codes are
+free to use. Enjoy!</p>
+
+<p><a href="http://jing.fm/?e1pfVhdBGRIW">http://jing.fm/?e1pfVhdBGRIW</a></p>
+
+<p><a href="http://jing.fm/?e1pfVhdBCQcW">http://jing.fm/?e1pfVhdBCQcW</a></p>
+
+<p><a href="http://jing.fm/?e1pfVhdBDhsT">http://jing.fm/?e1pfVhdBDhsT</a></p>
+
+<p><a href="http://jing.fm/?e1pfVhdBAxMO">http://jing.fm/?e1pfVhdBAxMO</a></p>
+
+<p><a href="http://jing.fm/?e1pfVhdBFg4K">http://jing.fm/?e1pfVhdBFg4K</a></p>
+
+<p><img src="http://dl.dropbox.com/u/3461566/img/Jing_Music.png" alt="Jing.fm" title="" /></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>[VirtualBox] VT-x is not available </title>
+<link>http://www.egr.msu.edu/~wangyua6/virtualbox.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/virtualbox.html</guid>
+<pubDate>Thu, 26 Jul 2012 06:00:00 +0000</pubDate>
+<description>Quick fix  Make sure that the memory of your virtual machine is a bit smaller th</description>
+<content:encoded>
+<![CDATA[<h2>Quick fix</h2>
+
+<p>Make sure that the memory of your virtual machine is a bit smaller than
+than 4GB (4096 MB). Otherwise, that's the reason why you get this
+error message:</p>
+
+<blockquote>
+  <p>"VT-x is not available.(VERR_VMX_NO_VMX) "</p>
+</blockquote>
+
+<p>To fix it, just set a smaller amount of memory (e.g. 3096 MB) and then
+you will get rid of this error. (Please note that set the memory as
+something like (4095 MB or 4000 MB) still won't work.)</p>
+
+<p>If you already set the memory below to 4GB and still have this
+problem, google a bit more then. ( sorry, this post is not helpful :( )</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Eigen: a brief intro </title>
+<link>http://www.egr.msu.edu/~wangyua6/eigen_lib.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/eigen_lib.html</guid>
+<pubDate>Wed, 25 Jul 2012 06:00:00 +0000</pubDate>
+<description>Emm, what is Eigen?  Well, since you didn't skip this paragraph, it's necessary </description>
+<content:encoded>
+<![CDATA[<h2>Emm, what is Eigen?</h2>
+
+<p>Well, since you didn't skip this paragraph, it's necessary to introduce a bit what Eigen is. I quote what is showed on its <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">official website</a>,</p>
+
+<blockquote>
+  <p>"Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms."</p>
+</blockquote>
+
+<h2>Why use Eigen?</h2>
+
+<blockquote>
+  <p>"I need a sparse linear solver."</p>
+</blockquote>
+
+<p>From my personal experience, one of my projects was using <a href="http://www.tau.ac.il/~stoledo/taucs/">TAUCS</a>, which has been unsupported for a very long time. It's not working quite well as long as the project getting larger. Finally, I decided to switch to something else which is a bit more modern.</p>
+
+<p>Another thing made me happy is that Eigen is portable. There is no hassle to link a bunch of lib files (.lib or .a). Thus, it's fairly easy to use. Just download it, extract it, put it under my project directory and use it. No configuration, no building stuff.</p>
+
+<h2>Now, show me some examples?</h2>
+
+<p>Okey-dokey, I'll show a piece of code while the <a href="http://eigen.tuxfamily.org/dox/">official document</a> 
+ of Eigen is also very helpful. Some code is able to be compiled on both Eigen 3.1.1 and Eigen 3.0. However, the program may have problems at running time. Hence, to save the trouble, I should declare that my code is working on Eigen 3.1.1, which is released on 22 July 2012. (Yeah, I like being up-to-date.)</p>
+
+<h3>Compute Singular values</h3>
+
+<pre class="prettyprint" ><code>#include "Eigen/Dense"
+void SVD_eigen(double a[3][3], double sigma[3])
+{
+     Eigen::Matrix3d A;
+     for (int i = 0; i &lt; 3; i++)
+     {
+          for (int j = 0; j &lt; 3; j++)
+          {
+               A(i,j) = a[i][j];
+          } //end of j
+     } //end of i
+
+     Eigen::JacobiSVD&lt;Eigen::Matrix3d&gt; svd(A);
+     Eigen::Vector3d sgm = svd.singularValues();
+
+     for (int j = 0; j &lt; 3; j++)
+     {
+          sigma[j] = sgm[j];
+     }
+}
+</code></pre>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Why viscosity is important?</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0010.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0010.html</guid>
+<pubDate>Sat, 21 Jul 2012 06:00:00 +0000</pubDate>
+<description>Incredible "water"  Here is a video for the incredible water.  </description>
+<content:encoded>
+<![CDATA[<h2>Incredible "water"</h2>
+
+<p>Here is a video for the incredible water.</p>
+
+<p><iframe width="640" height="480"
+src="http://www.youtube.com/embed/f2XQ97XHjVw?rel=0" frameborder="0"
+allowfullscreen></iframe></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>柳如是别传</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0009.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0009.html</guid>
+<pubDate>Fri, 20 Jul 2012 06:00:00 +0000</pubDate>
+<description>以诗证史  精彩精彩，就像侦探小说。一步步推理、考证，靠</description>
+<content:encoded>
+<![CDATA[<h2>以诗证史</h2>
+
+<p>精彩精彩，就像侦探小说。一步步推理、考证，靠得不是逻辑，而是旁征博引以
+及丰富的联想。此时，我仅仅读到，河东君姓名之考证。</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Asymptote</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0008.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0008.html</guid>
+<pubDate>Mon, 16 Jul 2012 06:00:00 +0000</pubDate>
+<description>Warning before installation!  If you're going to install Asymptote on windows, b</description>
+<content:encoded>
+<![CDATA[<h2>Warning before installation!</h2>
+
+<p>If you're going to install <a href="http://asymptote.sourceforge.net/">Asymptote</a> on windows, be careful with the path (system vaiable).</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Quotes</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0007.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0007.html</guid>
+<pubDate>Fri, 13 Jul 2012 06:00:00 +0000</pubDate>
+<description>Programming Languages  Here is collection   of quotes about programming language</description>
+<content:encoded>
+<![CDATA[<h2>Programming Languages</h2>
+
+<p>Here is <a href="http://www.scriptol.com/programming/quotes.php">collection</a> 
+ of quotes about programming languages. For example,</p>
+
+<blockquote>
+  <p>"A C program is like a fast dance on a newly waxed dance floor by people carrying razors."</p>
+  
+  <p>-- Waldi Ravens. Programmer.</p>
+</blockquote>
+
+<p>and</p>
+
+<blockquote>
+  <p>"The latest new features in C++ are designed to fix the previously new features in C++."</p>
+  
+  <p>-- David Jameson. Author.</p>
+</blockquote>
+
+<h2>The Art of War</h2>
+
+<p>First of all, I'm a pacifist. And actually, Sun Tzu is also a pacifist in some sense. He said,</p>
+
+<blockquote>
+  <p>"
+  凡用兵之法：全國為上，破國次之。全軍為上，破軍次之。全旅為上，破旅次之。全卒為上，破卒次之。全伍為上，破伍次之。是故，百戰百勝，非善之善者也；不戰而勝，善之善者也。
+  "</p>
+</blockquote>
+
+<p>In English, it means</p>
+
+<blockquote>
+  <p>"
+  In the practical art of war, the best thing of all is to take the enemy's country whole and intact; to shatter and destroy it is not so good. So, too, it is better to recapture an army entire than to destroy it, to capture a regiment, a detachment or a company entire than to destroy them.
+  Hence to fight and conquer in all your battles is not supreme excellence; supreme excellence consists in breaking the enemy's resistance without fighting.
+  "</p>
+</blockquote>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Keep up-to-date</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0006.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0006.html</guid>
+<pubDate>Thu, 12 Jul 2012 06:00:00 +0000</pubDate>
+<description>Never too old to learn  Today, I did a presentation about linear solvers on GPU.</description>
+<content:encoded>
+<![CDATA[<h2>Never too old to learn</h2>
+
+<p>Today, I did a presentation about <a href="http://www.cse.msu.edu/~wangyua6/presentation/gpusolver.html">linear solvers on GPU</a>. I'm not gonna babble what I talked on this topic. The process of making this presentation is much more interesting.</p>
+
+<p>So, to make the slides for this presentation, I tried a new tool - <a href="http://github.com/onesuper/weakpoint">weakpoint</a>,
+which I was looking for for a while. And it's also a fun experience to learn how to play with <a href="http://github.com/">github</a>. One "side effect" is that it forces me to pick up my "hobby" of <a href="http://www.gnu.org/software/emacs/">Emacs</a>.</p>
+
+<h2><a href="http://en.wikipedia.org/wiki/Furuhata_Ninzabur%C5%8D">Furuhata</a></h2>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/en/6/6e/Ninzaburo_Furuhata_in_Case_Closed.jpg" alt="Furuhata" title="" /></p>
+
+<p><embed src="http://www.xiami.com/widget/122698_1771062672/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent"></embed></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Jacobi iteration on GPU</title>
+<link>http://www.egr.msu.edu/~wangyua6/jacboi_gpu.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/jacboi_gpu.html</guid>
+<pubDate>Wed, 11 Jul 2012 06:00:00 +0000</pubDate>
+<description>Source Code  Here it is. [download]     Overview   while ( err &gt; ERROR_TOL) /</description>
+<content:encoded>
+<![CDATA[<h2>Source Code</h2>
+
+<p>Here it is. [<a href="https://dl.dropbox.com/u/3461566/jacobi.cu">download</a>]</p>
+
+<p><a name="overview"> </a></p>
+
+<h2>Overview</h2>
+
+<pre class="prettyprint" ><code> while ( err &gt; ERROR_TOL) // do the iteration untill err is less than tolerance
+ {
+      // 1. Copy X to x_old
+      for (int i =0; i &lt; dim; i++)
+      {
+           x_old[i] = X[i];
+      }
+      // 2. Compute X by A x_old
+
+      cudaMemcpy( X_old_d, x_old, sizeof(float) * dim, cudaMemcpyHostToDevice);
+      matMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(LU_d, X_old_d, tmp, dim, dim); // use x_old to compute LU X_old and store the result in tmp
+      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(B_d, tmp, X_d, dim);        // get the (B - LU X_old), which is stored in X_d
+      diaMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(diag_d, X_d, dim);         // get the new X
+
+      // 3. copy the new X back to the Host Memory
+      cudaMemcpy( X, X_d, sizeof(float) * dim, cudaMemcpyDeviceToHost);
+
+      // 4. calculate the norm of X_new - X_old
+      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(X_old_d, X_d, tmp, dim);
+      VecAbs&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
+      VecMax&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
+
+      // copy the max value from Device to Host
+
+      cudaMemcpy( max, tmp, sizeof(float), cudaMemcpyDeviceToHost);
+      err = (*max);
+ }
+</code></pre>
+
+<p><a name="multiply"> </a></p>
+
+<h2>Matrix multiply vector</h2>
+
+<pre class="prettyprint" ><code>__global__ void matMultVec( float * mat_A, 
+                            float * vec, 
+                            float * rst, 
+                            int dim_row, 
+                            int dim_col)
+{
+     int rowIdx = threadIdx.x + blockIdx.x * blockDim.x; // Get the row Index 
+     int aIdx;
+     while( rowIdx &lt; dim_row)
+     {
+          rst[rowIdx] = 0; // clean the value at first
+          for (int i = 0; i &lt; dim_col; i++)
+          {
+               aIdx = rowIdx * dim_col + i; // Get the index for the element a_{rowIdx, i}
+               rst[rowIdx] += (mat_A[aIdx] * vec[i] ); // do the multiplication
+          }
+          rowIdx += gridDim.x * blockDim.x;
+     }
+     __syncthreads();
+}
+</code></pre>
+
+<p><a name="add"> </a></p>
+
+<h2>Matrix addition/substraction</h2>
+
+<pre class="prettyprint" ><code> __global__ void substract(float *a_d, 
+                           float *b_d, 
+                           float *c_d, 
+                           int dim)
+ {
+      int tid = threadIdx.x + blockIdx.x * blockDim.x;
+      while ( tid &lt; dim )
+      {
+           c_d[tid] = a_d[tid] - b_d[tid];
+           tid += gridDim.x * blockDim.x;
+      }
+ }
+</code></pre>
+
+<p><a name="norm"> </a></p>
+
+<h2>Vector Norm</h2>
+
+<pre class="prettyprint" ><code>__global__ void VecMax( float * vec,  int dim)
+{
+     int tid = threadIdx.x + blockIdx.x * blockDim.x;
+     while (dim &gt; 1)
+     {
+          int mid = dim / 2; // get the half size
+          if ( tid &lt; mid)    // filter the active thread
+          {
+               if ( vec[tid] &lt; vec[tid+mid] ) // get the larger one between vec[tid] and vec[tid+mid]
+                    vec[tid] = vec[tid+mid];  // and store the larger one in vec[tid]
+          }
+
+          //deal with the odd case
+          if ( dim % 2 )       // if dim is odd...we need care about the last element
+          {
+               if ( tid == 0 ) // only use the vec[0] to compare with vec[dim-1]
+               {
+                    if ( vec[tid] &lt; vec[dim-1] )
+                         vec[tid] = vec[dim-1];
+               }
+          }
+
+          __syncthreads(); // sync all threads
+          dim /= 2;        // make the vector half size short.
+     }
+}
+</code></pre>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Computer Graphics in Movie</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0005.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0005.html</guid>
+<pubDate>Sun, 08 Jul 2012 06:00:00 +0000</pubDate>
+<description>Ahek-ahek, so computer graphics, uh?  Well, today I was asked why the digital ef</description>
+<content:encoded>
+<![CDATA[<h2>Ahek-ahek, so computer graphics, uh?</h2>
+
+<p>Well, today I was asked why the digital effects in Chinese TV shows are so cheap?
+Actually, one reason is that it's really "cheap" indeed. <a href="http://en.wikipedia.org/wiki/Computer-generated_imagery">CGI</a> ( computer-generated imagery ) actually is an expensive technique to use.</p>
+
+<h2>So, I'm wondering how it is used?</h2>
+
+<p>Here is a simple video showing how computer graphics is used in film production. ( Actually, this video is  using a portion of CG techniques.)</p>
+
+<p><iframe width="640" height="360" src="http://www.youtube.com/embed/dtzgrVzdpmM?rel=0" frameborder="0" allowfullscreen></iframe></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Origami</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0004.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0004.html</guid>
+<pubDate>Thu, 05 Jul 2012 06:00:00 +0000</pubDate>
+<description>Ah, is that just a simple game?  When we talk about Origami,  what are we talkin</description>
+<content:encoded>
+<![CDATA[<h2>Ah, is that just a simple game?</h2>
+
+<p>When we talk about <a href="http://en.wikipedia.org/wiki/Origami">Origami</a>, 
+what are we talking about? For most of us, the "Origami" in our brain looks like this.</p>
+
+<p><img src="http://dl.dropbox.com/u/3461566/img/9-110301214930.png" alt="Paper plane" title="" /></p>
+
+<p>And some of us are probably able to do something a bit more complicated, like,</p>
+
+<p><iframe src="http://player.vimeo.com/video/29805315" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+
+<p>However, is origami only for fun?</p>
+
+<h2>A bit more serious</h2>
+
+<p>Credit to <a href="http://www2.eng.cam.ac.uk/~ms652/">Mark Schenk</a>, some people have already been studying origami in engineering.</p>
+
+<p><video controls width="352px" height="288px" muted>
+<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.webm" type="video/webm; codecs=vorbis,vp8">
+<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.ogv" type="video/ogg; codecs=theora,vorbis">
+<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2">
+</video></p>
+
+<h2>More?</h2>
+
+<p>Here is more about <a href="http://www.origami-resource-center.com/origami-science.html">Serious Origami</a></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Slam Dunk</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0003.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0003.html</guid>
+<pubDate>Wed, 04 Jul 2012 06:00:00 +0000</pubDate>
+<description>What recalls me?  Occasionally, I found this video.    My comment  Yeah, it's be</description>
+<content:encoded>
+<![CDATA[<h2>What recalls me?</h2>
+
+<p>Occasionally, I found <a href="www.yinyuetai.com/video/42613">this video</a>.</p>
+
+<p><embed src="http://player.yinyuetai.com/video/player/42613/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed></p>
+
+<h2>My comment</h2>
+
+<p>Yeah, it's been quite a while since last time I played basketball. Like most 80s "young" people, I was impacted a lot by the popular cartoon <a href="http://en.wikipedia.org/wiki/Slam_dunk">Slam Dunk</a>. I can still remember the golden old time when I save my allowance for breakfast to collect the complete comics. This video recalls me so much memory about childhood and teenager. Just a blink, I'm a graduate student now and working on "Permanent head damage". Anyway, it's not good to always live in yeasterday, since Einsten said:</p>
+
+<p><em>Learn from yesterday, live for today, hope for tomorrow.</em></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>A little hack</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0002.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0002.html</guid>
+<pubDate>Tue, 03 Jul 2012 06:00:00 +0000</pubDate>
+<description>Emacs's today function  pueblo needs a header as follows to make every post nice</description>
+<content:encoded>
+<![CDATA[<h2>Emacs's <strong>today</strong> function</h2>
+
+<p><a href="http://mikeshea.net/pueblo.html">pueblo</a> needs a header as follows to make every post nice.</p>
+
+<pre class="prettyprint" ><code>Title: A little hack
+Author: doubletony
+Date:  3 July 2012
+</code></pre>
+
+<p>However, manually typing the repeated information seems not reasonable
+to me :) Thus, the first thing came up to me was how to avoid typing
+the date. Thanks to
+<a href="http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
+">this post</a>, I got my today function working nicely.</p>
+
+<pre class="prettyprint" ><code>(defun today ()
+"Insert string for today's date nicely formatted in American style,
+e.g. Sunday, September 17, 2000."
+      (interactive)                 ; permit invocation in minibuffer
+      (insert (format-time-string "%e %B %Y")))
+</code></pre>
+
+<h2>YASnippet</h2>
+
+<p>After this tiny progress, it's time to make the entire header info be
+a snippet. <a href="https://github.com/capitaomorte/yasnippet">YASnippet</a>
+does have several snippet for markdown-mode. It should be easy to
+follow the snippet of "<em>ol</em>" (order list) to create my snippet for
+header. Shortly, I came up the following snippet:</p>
+
+<pre class="prettyprint" ><code># name: head for post on pblog
+# key: head
+# --
+Title: ${}
+Author: doubletony
+Date: `(today)`
+
+$0
+</code></pre>]]>
+</content:encoded>
+</item>
+
+</channel>
+</rss>

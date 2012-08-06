@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Last non-zero digit of a factorial</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Last non-zero digit of a factorial" href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>Last non-zero digit of a factorial</h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 5 August 2012</p>
+<h2>What's the problem?</h2>
+
+<p>Given a number $ n $, find the last non-zero digit of $ n! $. For example, given 5, the
+last non-zero digit is 2. (since $ 5! = 120 $.)</p>
+
+<h2>Emm, brute-force first.</h2>
+
+<p>Well, it seems not an easy problem. The factorial increases fast, so the brute-force method 
+as following will explode very fast. It's overflow when n is only as small as 20.</p>
+
+<pre class="prettyprint" ><code>int bruteLastNonzerodigit(int n)
+{
+     int factorial = 1;
+
+     for (int i = 1; i &lt;= n; i++)
+     {
+          factorial *= i;
+     }
+
+     while( (factorial % 10) == 0 )
+     {
+          factorial /= 10;
+     }
+     return factorial % 10;
+}
+</code></pre>
+
+<h2>A better one.</h2>
+
+<p>So, if we think a bit deeply, we'll find that we are not necessary to store the entire result of a factorial.
+What if we can store a portion of the several digits from last non-zero digit? And take care the multipler of 5
+since zero of a factorial is produced by the factor of 5. For example, $5! = \cdots 0$, $10! = \cdots 00$. 
+Thus, we only need to keep a small portion
+of last non-zero digits.</p>
+
+<pre class="prettyprint" ><code>int getFiveOrder(int &amp;n)
+{
+     // we need change n
+     int count = 0;
+     while ( (n % 5) == 0  )
+     {
+          count += 1;
+          n /= 5;
+     }
+     return count;
+}
+
+int lastNonzeroDigit(int n)
+{
+     int lastPortion = 1;
+
+     for( int i = 1; i &lt;= n; i++ )
+     {
+          int remain = i;
+          int fiveOrder = getFiveOrder(remain);
+          int divider = 1&lt;&lt;fiveOrder;
+          lastPortion /= divider;
+          lastPortion *= remain;
+          if (lastPortion &lt; 0)
+          {
+               cout&lt;&lt;"Warnning: overflow..\n";
+          }
+          lastPortion = lastPortion % 10000000;
+     }
+
+     return lastPortion % 10;
+}
+</code></pre>
+
+<p>It's a little better than the brute-force version. However, it's still exploded around 250.
+The reason is not difficult to find: we can only keep a very limited last portion (% 10000000).
+And it's still a waste.</p>
+
+<h2>Now, any better one?</h2>
+
+<p>So, is there any better one? Yes. If we are given a number of the format $ n = a \cdot b \cdot c $,
+the last digit also can be computed as ( ((a % 10) * (b % 10) * (c % 10)) % 10). So can we borrow the
+same idea to compute the last non-zero digit. For instance, if we have a function $ f $, where $f(n)$
+will give us the last non-zero digit of $ n $, then can we compute $ f(abc)= f( f(a) f(b) f(c) ) $?</p>
+
+<p>Unfortunately, the answer is no. For example $n = 12 \cdot 5$, $f(12 \cdot 5) = 6$, while $f(f(12)f(5))=1$.
+Let's take a look why it's not working as we expected. The reason is that we have a pair of 2 and 5, which
+will create a 0 at the end. Thus, if we get rid of pair of 2 and 5 from $n$, then, we should be safe to compute
+last digit as previous. Thus, we have the following program, which works better.</p>
+
+<pre class="prettyprint" ><code>int getOrder(int &amp;n, int d)
+{
+     int count = 0;
+     while ( (n % d) == 0  )
+     {
+          count += 1;
+          n /= d;
+     }
+     return count;
+}
+
+int lastNonzeroDigit(int n)
+{
+     int twoOrderCount = 0; // we only need count the order of 2, think it why?
+     int lastDigit = 1;
+
+     for( int i = 1; i &lt;= n; i++ )
+     {
+          int remain = i;
+          int fiveOrder = getOrder(remain, 5);
+          int twoOrder = getOrder(remain, 2);
+          twoOrderCount += (twoOrder - fiveOrder);
+          lastDigit = (lastDigit * remain % 10);
+     }
+
+     for (int i = 0; i &lt; twoOrderCount; i++)
+     {
+          lastDigit = ( lastDigit * 2 ) % 10;
+     }
+     return lastDigit;
+}
+</code></pre>
+
+<p>This piece of code works nice for the input n as large as 10000000 within a blink. 
+However, the story is not end. It takes a while on my computer to get the result of 100000000.
+Can we improve it from the aspect of time-complexity? The answer is <em>YES</em> but there is not enough
+space in the margin to write it :)</p>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>

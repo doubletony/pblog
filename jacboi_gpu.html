@@ -1,0 +1,189 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jacobi iteration on GPU</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Jacobi iteration on GPU" href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>Jacobi iteration on GPU</h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 11 July 2012</p>
+<h2>Source Code</h2>
+
+<p>Here it is. [<a href="https://dl.dropbox.com/u/3461566/jacobi.cu">download</a>]</p>
+
+<p><a name="overview"> </a></p>
+
+<h2>Overview</h2>
+
+<pre class="prettyprint" ><code> while ( err &gt; ERROR_TOL) // do the iteration untill err is less than tolerance
+ {
+      // 1. Copy X to x_old
+      for (int i =0; i &lt; dim; i++)
+      {
+           x_old[i] = X[i];
+      }
+      // 2. Compute X by A x_old
+
+      cudaMemcpy( X_old_d, x_old, sizeof(float) * dim, cudaMemcpyHostToDevice);
+      matMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(LU_d, X_old_d, tmp, dim, dim); // use x_old to compute LU X_old and store the result in tmp
+      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(B_d, tmp, X_d, dim);        // get the (B - LU X_old), which is stored in X_d
+      diaMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(diag_d, X_d, dim);         // get the new X
+
+      // 3. copy the new X back to the Host Memory
+      cudaMemcpy( X, X_d, sizeof(float) * dim, cudaMemcpyDeviceToHost);
+
+      // 4. calculate the norm of X_new - X_old
+      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(X_old_d, X_d, tmp, dim);
+      VecAbs&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
+      VecMax&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
+
+      // copy the max value from Device to Host
+
+      cudaMemcpy( max, tmp, sizeof(float), cudaMemcpyDeviceToHost);
+      err = (*max);
+ }
+</code></pre>
+
+<p><a name="multiply"> </a></p>
+
+<h2>Matrix multiply vector</h2>
+
+<pre class="prettyprint" ><code>__global__ void matMultVec( float * mat_A, 
+                            float * vec, 
+                            float * rst, 
+                            int dim_row, 
+                            int dim_col)
+{
+     int rowIdx = threadIdx.x + blockIdx.x * blockDim.x; // Get the row Index 
+     int aIdx;
+     while( rowIdx &lt; dim_row)
+     {
+          rst[rowIdx] = 0; // clean the value at first
+          for (int i = 0; i &lt; dim_col; i++)
+          {
+               aIdx = rowIdx * dim_col + i; // Get the index for the element a_{rowIdx, i}
+               rst[rowIdx] += (mat_A[aIdx] * vec[i] ); // do the multiplication
+          }
+          rowIdx += gridDim.x * blockDim.x;
+     }
+     __syncthreads();
+}
+</code></pre>
+
+<p><a name="add"> </a></p>
+
+<h2>Matrix addition/substraction</h2>
+
+<pre class="prettyprint" ><code> __global__ void substract(float *a_d, 
+                           float *b_d, 
+                           float *c_d, 
+                           int dim)
+ {
+      int tid = threadIdx.x + blockIdx.x * blockDim.x;
+      while ( tid &lt; dim )
+      {
+           c_d[tid] = a_d[tid] - b_d[tid];
+           tid += gridDim.x * blockDim.x;
+      }
+ }
+</code></pre>
+
+<p><a name="norm"> </a></p>
+
+<h2>Vector Norm</h2>
+
+<pre class="prettyprint" ><code>__global__ void VecMax( float * vec,  int dim)
+{
+     int tid = threadIdx.x + blockIdx.x * blockDim.x;
+     while (dim &gt; 1)
+     {
+          int mid = dim / 2; // get the half size
+          if ( tid &lt; mid)    // filter the active thread
+          {
+               if ( vec[tid] &lt; vec[tid+mid] ) // get the larger one between vec[tid] and vec[tid+mid]
+                    vec[tid] = vec[tid+mid];  // and store the larger one in vec[tid]
+          }
+
+          //deal with the odd case
+          if ( dim % 2 )       // if dim is odd...we need care about the last element
+          {
+               if ( tid == 0 ) // only use the vec[0] to compare with vec[dim-1]
+               {
+                    if ( vec[tid] &lt; vec[dim-1] )
+                         vec[tid] = vec[dim-1];
+               }
+          }
+
+          __syncthreads(); // sync all threads
+          dim /= 2;        // make the vector half size short.
+     }
+}
+</code></pre>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>

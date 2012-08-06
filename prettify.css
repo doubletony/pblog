@@ -1,0 +1,166 @@
+
+.pln
+{
+	color: #EFEFEF;
+	font-weight: normal;
+}
+.str
+{
+	/*[ph]0*/
+	font-weight: normal;
+}
+@media screen
+{
+	.str
+	{
+		/*[id]0*/color: #1FE01F;
+	}
+}
+.kwd
+{
+	/*[ph]1*/
+	font-weight: bold;
+}
+@media screen
+{
+	.kwd
+	{
+		/*[id]1*/color: #E99D1B;
+	}
+}
+.com
+{
+	/*[ph]2*/
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: none;
+}
+@media screen
+{
+	.com
+	{
+		/*[id]2*/color: #FF1010;
+	}
+}
+.typ
+{
+	/*[ph]3*/
+	font-weight: bold;
+}
+@media screen
+{
+	.typ
+	{
+		/*[id]3*/color: #EA00EA;
+	}
+}
+.lit
+{
+	/*[ph]4*/
+	font-weight: bold;
+}
+@media screen
+{
+	.lit
+	{
+		/*[id]4*/color: #00FFFF;
+	}
+}
+.pun, .opn, .clo
+{
+	/*[ph]5*/
+	font-style: normal;
+	font-weight: normal;
+}
+@media screen
+{
+	.pun, .opn, .clo
+	{
+		/*[id]5*/color: #E1F737;
+	}
+	.tag
+	{
+		color: #2020FF;
+	}
+	.atn
+	{
+		color: #606;
+	}
+	.atv
+	{
+		color: #080;
+	}
+	.dec, .var
+	{
+		color: #606;
+	}
+	.fun
+	{
+		color: #FF0000;
+	}
+}
+@media print,projection
+{
+	.str
+	{
+		color: #060;
+	}
+	.kwd
+	{
+		color: #006;
+		font-weight: bold;
+	}
+	.com
+	{
+		color: #600;
+		font-style: italic;
+	}
+	.typ
+	{
+		color: #404;
+		font-weight: bold;
+	}
+	.lit
+	{
+		color: #044;
+	}
+	.pun, .opn, .clo
+	{
+		color: #440;
+	}
+	.tag
+	{
+		color: #006;
+		font-weight: bold;
+	}
+	.atn
+	{
+		color: #404;
+	}
+	.atv
+	{
+		color: #060;
+	}
+}
+
+PRE.prettyprint
+{
+	background-color: #101010;
+	font-size: 20px;
+	word-wrap: break-word;
+	max-width: inherit;
+}
+
+OL.linenums
+{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+LI.L0, LI.L1, LI.L2, LI.L3, LI.L5, LI.L6, LI.L7, LI.L8
+{
+	list-style-type: none;
+}
+LI.L1, LI.L3, LI.L5, LI.L7, LI.L9
+{
+	background: #EEE;
+}

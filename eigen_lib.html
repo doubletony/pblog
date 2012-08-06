@@ -1,0 +1,123 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Eigen: a brief intro </title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Eigen: a brief intro " href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>Eigen: a brief intro </h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 25 July 2012</p>
+<h2>Emm, what is Eigen?</h2>
+
+<p>Well, since you didn't skip this paragraph, it's necessary to introduce a bit what Eigen is. I quote what is showed on its <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">official website</a>,</p>
+
+<blockquote>
+  <p>"Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms."</p>
+</blockquote>
+
+<h2>Why use Eigen?</h2>
+
+<blockquote>
+  <p>"I need a sparse linear solver."</p>
+</blockquote>
+
+<p>From my personal experience, one of my projects was using <a href="http://www.tau.ac.il/~stoledo/taucs/">TAUCS</a>, which has been unsupported for a very long time. It's not working quite well as long as the project getting larger. Finally, I decided to switch to something else which is a bit more modern.</p>
+
+<p>Another thing made me happy is that Eigen is portable. There is no hassle to link a bunch of lib files (.lib or .a). Thus, it's fairly easy to use. Just download it, extract it, put it under my project directory and use it. No configuration, no building stuff.</p>
+
+<h2>Now, show me some examples?</h2>
+
+<p>Okey-dokey, I'll show a piece of code while the <a href="http://eigen.tuxfamily.org/dox/">official document</a> 
+ of Eigen is also very helpful. Some code is able to be compiled on both Eigen 3.1.1 and Eigen 3.0. However, the program may have problems at running time. Hence, to save the trouble, I should declare that my code is working on Eigen 3.1.1, which is released on 22 July 2012. (Yeah, I like being up-to-date.)</p>
+
+<h3>Compute Singular values</h3>
+
+<pre class="prettyprint" ><code>#include "Eigen/Dense"
+void SVD_eigen(double a[3][3], double sigma[3])
+{
+     Eigen::Matrix3d A;
+     for (int i = 0; i &lt; 3; i++)
+     {
+          for (int j = 0; j &lt; 3; j++)
+          {
+               A(i,j) = a[i][j];
+          } //end of j
+     } //end of i
+
+     Eigen::JacobiSVD&lt;Eigen::Matrix3d&gt; svd(A);
+     Eigen::Vector3d sgm = svd.singularValues();
+
+     for (int j = 0; j &lt; 3; j++)
+     {
+          sigma[j] = sgm[j];
+     }
+}
+</code></pre>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>
