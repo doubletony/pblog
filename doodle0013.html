@@ -1,0 +1,97 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>[IMO 2012] Problem 2</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="[IMO 2012] Problem 2" href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>[IMO 2012] Problem 2</h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 7 August 2012</p>
+<h2>Problem</h2>
+
+<p>Let $ n \geq 3 $ be an integer, and let $ a_2, a_3, \cdots , a_n$ be positive real numbers such that
+$ a_2 a_3 \cdots a_n = 1 $. Prove that</p>
+
+<p>$$ (1+a_2)^2 (1+a_3)^3 \cdots (1+a_n)^n > n^n  $$</p>
+
+<h2>Hint: arithmetic mean $\geq$ geometric mean</h2>
+
+<p>For each term, $(1+a_k)^k$, we may try to make it looks like something of arithmetic mean. So, he have</p>
+
+<p>$$ ((k - 1) (\frac{1}{k-1}) + a_k)^k $$</p>
+
+<p>Now we have,</p>
+
+<p>$$ ((k - 1) (\frac{1}{k-1}) + a_k)^k  \geq k^k a_k (\frac{1}{k - 1})^{k-1} $$</p>
+
+<p>which means $ (1+a_k)^k \geq a_k\frac{k^k}{{(k-1)}^{k-1}} $</p>
+
+<p>Now, what follows is straightforward.</p>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>

@@ -106,12 +106,6 @@ blockquote {
   border-left: 3px solid #ccc;
 } 
 
-IMG
-{
-	margin: 1em;
-	border: 0;
-}
-
 .discuss
 {
 	text-align: center;
@@ -139,14 +133,13 @@ IMG
 	border-radius: 10px;
 }
 
-.article IMG
+.article IMG, .article iframe, .article video
 {
-	max-width: 750px;
-	margin-bottom: -2px;
-	margin-top: 0px;
-	margin-left: 4px;
-	margin-right: 3px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .index_header H1
 {
 	font-weight: bold;
@@ -210,6 +203,13 @@ display: none;
 	margin-top: -56px;
 	margin-left: -56px;
 }
+
+.date:hover
+{
+	position:absolute;
+	margin-left: -60px;
+	margin-left: -60px;
+}
 .day
 {
 	z-index: 1;
@@ -221,8 +221,8 @@ display: none;
 	background: white;
 	text-align: right;
 	line-height:30px;
-	font-size: 30px;
-	font-family: Console;
+	font-size: 28px;
+	font-family: Lucida Console;
 	-webkit-box-shadow: -10px 10px 25px black;
     -moz-box-shadow: -10px 10px 25px black;
     box-shadow: -10px 10px 25px black;
@@ -255,11 +255,11 @@ display: none;
 	background: #ccc;
 	height: 14px;
 	line-height:14px;
-	font-size: 13px;
+	font-size: 12px;
 	width: 30px;
 	color: black;
 	text-align: center;
-	font-family: Console;
+	font-family: Lucida Console;
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-o-transform: rotate(90deg);

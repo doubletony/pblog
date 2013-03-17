@@ -82,9 +82,9 @@ same idea to compute the last non-zero digit. For instance, if we have a functio
 will give us the last non-zero digit of $ n $, then can we compute $ f(abc)= f( f(a) f(b) f(c) ) $?
 
 Unfortunately, the answer is no. For example $n = 12 \cdot 5$, $f(12 \cdot 5) = 6$, while $f(f(12)f(5))=1$.
-Let's take a look why it's not working as we expected. The reason is that we have a pair of 2 and 5, which
-will create a 0 at the end. Thus, if we get rid of pair of 2 and 5 from $n$, then, we should be safe to compute
-last digit as previous. Thus, we have the following program, which works better. 
+Let's take a look why it's not working as we expected. The reason is that we have a pair of $2$ and $5$, which
+will create a $0$ at the end. Thus, if we can get rid of the pairs of $2$ and $5$ from $n$, then we should be safe to compute
+last digit similar as the above strategy. Thus, we have the following program, which works better. 
 
 
     int getOrder(int &n, int d)

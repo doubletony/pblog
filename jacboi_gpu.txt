@@ -6,6 +6,11 @@ Date: 11 July 2012
 
 Here it is. \[[download](https://dl.dropbox.com/u/3461566/jacobi.cu )\]
 
+## Warm Tip
+
+The following code has potential problem. See an related [post](./doodle0017.html ).
+
+
 <a name="overview"> </a>
 ## Overview
 

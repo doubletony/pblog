@@ -9,9 +9,396 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 <title>Watch back!</title>
 <link>http://www.egr.msu.edu/~wangyua6/</link>
 <description>Why serious?!</description>
-<pubDate>Mon, 06 Aug 2012 03:22:35 GMT</pubDate>
+<pubDate>Sun, 17 Mar 2013 03:34:15 GMT</pubDate>
 <language>en</language>
 <atom:link href="http://www.egr.msu.edu/~wangyua6/index.xml" rel="self" type="application/rss+xml" />
+
+<item>
+<title>Exhausted</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0022.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0022.html</guid>
+<pubDate>Tue, 30 Oct 2012 06:00:00 +0000</pubDate>
+<description>Passed my Comprhensive Exam  I'm happy.</description>
+<content:encoded>
+<![CDATA[<h2>Passed my Comprhensive Exam</h2>
+
+<p>I'm happy.</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Bibtex: "I found no \\bibdata command"</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0021.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0021.html</guid>
+<pubDate>Sun, 16 Sep 2012 06:00:00 +0000</pubDate>
+<description>Problem  I recently use emacs and auctex to write latex document. Something weir</description>
+<content:encoded>
+<![CDATA[<h2>Problem</h2>
+
+<p>I recently use emacs and auctex to write latex document. Something weirdly happening is that sometimes the bibtex doesn't work and bark with two errors:</p>
+
+<blockquote>
+  <p>I found no \bibdata command---while reading file xxx.aux</p>
+  
+  <p>I found no \bibstyle command---while reading file xxx.aux</p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<p>Actually, the culprit is me. I forgot to close the preview pdf file and run the latex command. So the solution is simple, close the pdf, run latex, run bibtex, run latex twice.</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>A simple three.js demo</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0020.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0020.html</guid>
+<pubDate>Sat, 08 Sep 2012 06:00:00 +0000</pubDate>
+<description>What is three.js?  I'm not a good story teller. More details on the project page</description>
+<content:encoded>
+<![CDATA[<h2>What is three.js?</h2>
+
+<p>I'm not a good story teller. More details on the project <a href="https://github.com/mrdoob/three.js/">page</a> on GitHub. 
+Briefly, it's a javascript library providing html 3D renderers.</p>
+
+<h2>Show me some demos?</h2>
+
+<p>Here are a bunch of <a href="http://mrdoob.github.com/three.js/">demos</a>.</p>
+
+<h2>My poor one.</h2>
+
+<p>Credit to <a href="http://creativejs.com/tutorials/three-js-part-1-make-a-star-field/">creative JS</a>. I simply modified this
+demo by adding random color. <a href="http://www.egr.msu.edu/~wangyua6/demo/">Enjoy</a> it if you're not satisfied with any demo above.</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>[Emacs] C-n and C-p</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0019.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0019.html</guid>
+<pubDate>Tue, 28 Aug 2012 06:00:00 +0000</pubDate>
+<description>Purpose  In most cases, C-n and C-p work well enough to go to next and previous </description>
+<content:encoded>
+<![CDATA[<h1>Purpose</h1>
+
+<p>In most cases, C-n and C-p work well enough to go to next and previous line. However, when I read a long document,
+I always press C-l after C-n or C-P to center the buffer. It may look much "geeky" when some one press keyboard frequently.
+However, I'm a lazy one.  Why don't simply bind a new keystroke to do that?</p>
+
+<h1>Solution</h1>
+
+<p>It's pretty straightforward. Since M-n and M-p are not bound to any command, I bind them to those two keys.</p>
+
+<pre class="prettyprint" ><code> ;; redefine the next line and previous line stuff
+
+ (defun my-next-line ()
+   (interactive)
+   (next-line)
+   (recenter)
+   )
+
+
+ (defun my-previous-line ()
+   (interactive)
+   (previous-line)
+   (recenter)
+   )
+
+
+ (global-set-key (kbd "M-n") 'my-next-line)
+ (global-set-key (kbd "M-p") 'my-previous-line)
+</code></pre>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>My first chrome extension</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0018.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0018.html</guid>
+<pubDate>Sun, 26 Aug 2012 06:00:00 +0000</pubDate>
+<description>Just a re-post  It's original posted on my another blog in Chinese.  Motivation </description>
+<content:encoded>
+<![CDATA[<h1>Just a re-post</h1>
+
+<p>It's original posted on my another <a href="http://www.cse.msu.edu/~wangyua6/blog/?p=1738">blog</a> in Chinese.</p>
+
+<h1>Motivation</h1>
+
+<p>The recent update of Chrome is nice to me. It will open PDF link with <a href="http://docs.google.com">Google Document</a>. 
+However, sometimes, it's just not working that well. I searched a while on Google's extension store but no luck
+there. Finally, I decide to create a such extension since it's not very hard to implement.  Actually, it's very
+simple. I have no exprience of developing Chorme extenstion before. It just took me about 30 mintues to read the
+Document and around 10 mintues to write up the extension. Yeah, I'm kind of showing off :)</p>
+
+<h1>Download</h1>
+
+<p>For those busy guys, here is the link for <a href="https://dl.dropbox.com/u/3461566/sharedTools/doc.crx">download</a>. 
+(<em>WARNING:</em> It may pop-up directly for installation.)</p>
+
+<h1>Story behind it</h1>
+
+<p>Well, let's find another time.</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Again, Jacobi iteration on GPU</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0017.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0017.html</guid>
+<pubDate>Wed, 15 Aug 2012 06:00:00 +0000</pubDate>
+<description>What's updated?  Here is my old post. The purpose of that post is just to provid</description>
+<content:encoded>
+<![CDATA[<h2>What's updated?</h2>
+
+<p>Here is my old <a href="./jacboi_gpu.html">post</a>. The purpose of that post is just to provide code snippets for my
+<a href="http://www.cse.msu.edu/~wangyua6/presentation/gpusolver.html">presentation</a>.
+In that post, however, the code of VecNorm ( VecMax ) is not working correctly for some cases.</p>
+
+<p>As always, here is the new code. [<a href="https://dl.dropbox.com/u/3461566/jacobi_new.cu">download</a>]</p>
+
+<h2>So, what's the problem?</h2>
+
+<pre class="prettyprint" ><code>__global__ void VecMax( float * vec,  int dim)
+{
+     int tid = threadIdx.x + blockIdx.x * blockDim.x;
+     while (dim &gt; 1)
+     {
+          int mid = dim / 2; // get the half size
+          if ( tid &lt; mid)    // filter the active thread
+          {
+               if ( vec[tid] &lt; vec[tid+mid] ) // get the larger one between vec[tid] and vec[tid+mid]
+                    vec[tid] = vec[tid+mid];  // and store the larger one in vec[tid]
+          }
+
+          //deal with the odd case
+          if ( dim % 2 )       // if dim is odd...we need care about the last element
+          {
+               if ( tid == 0 ) // only use the vec[0] to compare with vec[dim-1]
+               {
+                    if ( vec[tid] &lt; vec[dim-1] )
+                         vec[tid] = vec[dim-1];
+               }
+          }
+
+          __syncthreads(); // sync all threads
+          dim /= 2;        // make the vector half size short.
+     }
+}
+</code></pre>
+
+<p>This function may not work properly when the number of blocks is greater than 1. The reason is that
+<em>syncthreads()</em> only <em>* sync threads within one block  *</em>. So, it'll cause the problem. For example,
+if the dim = 1024 and the thread number is 256, thus the block number is 4. In the first block, thread 0 compares
+vec[0] and vec[512]. Then it waits all other threads in the first block until they finish the job. Now, in the first block,
+the new dim is 512, so thread 0 compares vec[0] and vec[256]. However, we don't know whether vec[256] is safe
+to use or not, because the thread-0 in block 2 may still work on comparing vec[256] and vec[256+512] in its first iteration
+of the second block. Thus, we have troubles.</p>
+
+<h2>What's the new solution?</h2>
+
+<p>We have several options. Since <a href="http://developer.nvidia.com/cuda/cuda-downloads">CUDA</a> 4.0, <a href="https://code.google.com/p/thrust/">thrust</a> has been included in the official package. So we can use a thrust function of vector maximum as an option.</p>
+
+<p>Also, we can solve the problem still with some basic CUDA codes. The strategy now is to use a loop on CPU and
+let GPU does the job just for one iteration. The following code implements the idea of breaking the loop step by step.</p>
+
+<pre class="prettyprint" ><code>void VecMax( float * vec,  int dim, int dimB, int dimT)
+{
+
+     while (dim &gt; 1)
+     {
+          VecMaxOneStepCompare&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(vec, dim);
+
+          // if the dimension is odd.
+          if( dim % 2)
+          {
+               SwapForOddDim&lt;&lt;&lt;1,1&gt;&gt;&gt;(vec, dim);
+          }
+          dim /= 2;        // make the vector half size short.
+     }
+
+     // compare last two values
+     SwapForOddDim&lt;&lt;&lt;1,1&gt;&gt;&gt;(vec, 2);
+}
+</code></pre>
+
+<p>And the VecMaxOneStepCompare is just a single step to compare the element with index $i$ and $i+\frac{dim}{2}$.</p>
+
+<pre class="prettyprint" ><code>__global__ void SwapForOddDim(float * vec, int dim)
+{
+     if ( vec[0] &lt; vec[dim-1] )
+          vec[0] = vec[dim-1];
+}
+
+
+__global__ void VecMaxOneStepCompare( float * vec,  int dim)
+{
+     int tid = threadIdx.x + blockIdx.x * blockDim.x;
+     int mid = dim / 2; // get the half size
+
+     while( tid &lt; mid)
+     {
+          if ( tid &lt; mid)    // filter the active thread
+          {
+               if ( vec[tid] &lt; vec[tid+mid] ) // get the larger one between vec[tid] and vec[tid+mid]
+                    vec[tid] = vec[tid+mid];  // and store the larger one in vec[tid]
+          }
+
+          tid += gridDim.x * blockDim.x;
+     }
+     __syncthreads();
+}
+</code></pre>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>cling - An interactive C++ interpreter</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0016.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0016.html</guid>
+<pubDate>Tue, 14 Aug 2012 06:00:00 +0000</pubDate>
+<description>I literally understand the title, so what's that?  Well, I like python 's intera</description>
+<content:encoded>
+<![CDATA[<h2>I literally understand the title, so what's that?</h2>
+
+<p>Well, I like <a href="http://python.org/">python</a> 's interactive programming environment. It makes things easier. 
+For example, testing a simple piece of code or playing with a module to get familiar with it. So how about C++? It's kind of
+tedious to write a .cpp file and then compile it to run. If something does not work as what I expected, I need
+change the code and repeat the above procedure again and again. It seems not bearable for a lazy one like me.</p>
+
+<p>Then I searched around and finally found <a href="http://root.cern.ch/drupal/content/what-cling">cling</a>.</p>
+
+<h2>Just a snapshot</h2>
+
+<p>After the long wait of building, making and installing, I finally get it worked pretty nicely. Here 
+is just a snapshot to show (off) :)</p>
+
+<p><img src="http://dl.dropbox.com/u/3461566/img/cling.png" alt="cling" title="" /></p>
+
+<h2>Comments</h2>
+
+<ol>
+<li><p>It's still a bit tedious. I have to type "#include <iostream>" stuff every time I launch cling. Maybe there is a hack
+to include some head files as default.</p></li>
+<li><p>Laggy. It may due to my poor <em>ATT</em> connection, but cling is a bit slow. Well, it's not that scaring.</p></li>
+<li><p>Future comments reserved.</p></li>
+</ol>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>Binary trees and triangle dissections</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0015.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0015.html</guid>
+<pubDate>Thu, 09 Aug 2012 06:00:00 +0000</pubDate>
+<description>What's the problem?  Actually, the following problem is from the epic book - The</description>
+<content:encoded>
+<![CDATA[<h2>What's the problem?</h2>
+
+<p>Actually, the following problem is from the epic book - <a href="http://www-cs-faculty.stanford.edu/~uno/taocp.html">The Art of Computer Programming</a>.</p>
+
+<blockquote>
+  <p>Find a simple one-to-one correspondence between binary trees with $n$ nodes and 
+  dissections of an $(n+2)$-sided convex polygon into $n$ triangles, assuming that
+  the sides of the polygon are distinct.</p>
+</blockquote>
+
+<h2>Solution ?</h2>
+
+<p>I yield to write the solution here since TAOCP does have solution. So, the hint is
+Can you find the relation between the following stuff and a binary tree?</p>
+
+<p>$$ (((12) 3) 4)  $$</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>[IMO 2012] Problem 4</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0014.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0014.html</guid>
+<pubDate>Wed, 08 Aug 2012 06:00:00 +0000</pubDate>
+<description>Problem  Find all functions $ f: \mathbb{Z} \to \mathbb{Z} $ such that, for all </description>
+<content:encoded>
+<![CDATA[<h2>Problem</h2>
+
+<p>Find all functions $ f: \mathbb{Z} \to \mathbb{Z} $ such that, for all integers $a,b,c$ that
+satisfy $a+b+c=0$, the following equality holds:</p>
+
+<p>$$ {f(a)}^2 + {f(b)}^2 + {f(c)}^2 = 2{f(a)}{f(b)} + 2{f(b)}{f(c)} + 2{f(c)}{f(a)} $$</p>
+
+<h2>Some simple results</h2>
+
+<p>First, let $a=b=c=0$ and we will have  $f(0)=0$.</p>
+
+<p>Second, Set $c=0$ and $b=-a$, we get $f(a)=f(-a)$ (wow,it's an even function).</p>
+
+<p>Then, if we replace $c$ by $a+b$ (since $f(c)=f(-a-b)=f(a+b)$), we can obtain the following equality:</p>
+
+<p>$$ {(f(a+b) - (f(a)+f(b))) }^2 = 4f(a)f(b) $$</p>
+
+<h2>Find the recurrence relation</h2>
+
+<p>Now, we have enough knowledge to analyze the properties of function $f$.</p>
+
+<p><em>First</em>, we have $f(z) \geq 0$  for all $z \in \mathbb{z}$ or  $f(z) \leq 0$  for all $z \in \mathbb{z}$
+It's not difficult to see since if we can find two values $z_1, z_2$ having opposite signs, then 
+$4f(z_1)f(z_2) &lt; 0$ which is impossible.</p>
+
+<p><em>Second</em>, if we have a non-negative function $f$ as a solution, then $g(z)=-f(z)$ is also a solution.
+It's still not difficult to see since each term in the original equality is of order two.</p>
+
+<p>If we assume $f$ is a non-negative solution, we can take out the square safely to obtain the following equality:</p>
+
+<p>$$ f(a+b) - (f(a)+f(b)) = \pm 2\sqrt{f(a)f(b)} $$</p>
+
+<p>which also means</p>
+
+<p>$$ f(a+b) = (\sqrt{f(a)} \pm \sqrt{f(b)})^2$$</p>
+
+<p>Replace $b$ by $1$, we can get the recurrence relation:</p>
+
+<p>$$ f(a+1) = (\sqrt{f(a)} \pm \sqrt{f(1)})^2$$</p>
+
+<p>To make it simple, we can replace function $f$ by a function $g$, where $f(a) = g^2(a), g(a) \geq 0$. (Think: why can we do this?)</p>
+
+<p>Now, the equality will look like $ g^2(a+1) = ( g(a) \pm g(1) )^2 $, which means</p>
+
+<p>$$ g(a+1) = \pm (g(a) \pm g(1) )  $$</p>
+
+<h2>All solutions?</h2>
+
+<p>Well, I will leave it there. (HINT: there are two classes of non-trivial solutions.)</p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>[IMO 2012] Problem 2</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0013.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0013.html</guid>
+<pubDate>Tue, 07 Aug 2012 06:00:00 +0000</pubDate>
+<description>Problem  Let $ n \geq 3 $ be an integer, and let $ a_2, a_3, \cdots , a_n$ be po</description>
+<content:encoded>
+<![CDATA[<h2>Problem</h2>
+
+<p>Let $ n \geq 3 $ be an integer, and let $ a_2, a_3, \cdots , a_n$ be positive real numbers such that
+$ a_2 a_3 \cdots a_n = 1 $. Prove that</p>
+
+<p>$$ (1+a_2)^2 (1+a_3)^3 \cdots (1+a_n)^n > n^n  $$</p>
+
+<h2>Hint: arithmetic mean $\geq$ geometric mean</h2>
+
+<p>For each term, $(1+a_k)^k$, we may try to make it looks like something of arithmetic mean. So, he have</p>
+
+<p>$$ ((k - 1) (\frac{1}{k-1}) + a_k)^k $$</p>
+
+<p>Now we have,</p>
+
+<p>$$ ((k - 1) (\frac{1}{k-1}) + a_k)^k  \geq k^k a_k (\frac{1}{k - 1})^{k-1} $$</p>
+
+<p>which means $ (1+a_k)^k \geq a_k\frac{k^k}{{(k-1)}^{k-1}} $</p>
+
+<p>Now, what follows is straightforward.</p>]]>
+</content:encoded>
+</item>
 
 <item>
 <title>Last non-zero digit of a factorial</title>
@@ -101,9 +488,9 @@ same idea to compute the last non-zero digit. For instance, if we have a functio
 will give us the last non-zero digit of $ n $, then can we compute $ f(abc)= f( f(a) f(b) f(c) ) $?</p>
 
 <p>Unfortunately, the answer is no. For example $n = 12 \cdot 5$, $f(12 \cdot 5) = 6$, while $f(f(12)f(5))=1$.
-Let's take a look why it's not working as we expected. The reason is that we have a pair of 2 and 5, which
-will create a 0 at the end. Thus, if we get rid of pair of 2 and 5 from $n$, then, we should be safe to compute
-last digit as previous. Thus, we have the following program, which works better.</p>
+Let's take a look why it's not working as we expected. The reason is that we have a pair of $2$ and $5$, which
+will create a $0$ at the end. Thus, if we can get rid of the pairs of $2$ and $5$ from $n$, then we should be safe to compute
+last digit similar as the above strategy. Thus, we have the following program, which works better.</p>
 
 <pre class="prettyprint" ><code>int getOrder(int &amp;n, int d)
 {
@@ -250,367 +637,6 @@ void SVD_eigen(double a[3][3], double sigma[3])
           sigma[j] = sgm[j];
      }
 }
-</code></pre>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Why viscosity is important?</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0010.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0010.html</guid>
-<pubDate>Sat, 21 Jul 2012 06:00:00 +0000</pubDate>
-<description>Incredible "water"  Here is a video for the incredible water.  </description>
-<content:encoded>
-<![CDATA[<h2>Incredible "water"</h2>
-
-<p>Here is a video for the incredible water.</p>
-
-<p><iframe width="640" height="480"
-src="http://www.youtube.com/embed/f2XQ97XHjVw?rel=0" frameborder="0"
-allowfullscreen></iframe></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>柳如是别传</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0009.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0009.html</guid>
-<pubDate>Fri, 20 Jul 2012 06:00:00 +0000</pubDate>
-<description>以诗证史  精彩精彩，就像侦探小说。一步步推理、考证，靠</description>
-<content:encoded>
-<![CDATA[<h2>以诗证史</h2>
-
-<p>精彩精彩，就像侦探小说。一步步推理、考证，靠得不是逻辑，而是旁征博引以
-及丰富的联想。此时，我仅仅读到，河东君姓名之考证。</p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Asymptote</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0008.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0008.html</guid>
-<pubDate>Mon, 16 Jul 2012 06:00:00 +0000</pubDate>
-<description>Warning before installation!  If you're going to install Asymptote on windows, b</description>
-<content:encoded>
-<![CDATA[<h2>Warning before installation!</h2>
-
-<p>If you're going to install <a href="http://asymptote.sourceforge.net/">Asymptote</a> on windows, be careful with the path (system vaiable).</p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Quotes</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0007.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0007.html</guid>
-<pubDate>Fri, 13 Jul 2012 06:00:00 +0000</pubDate>
-<description>Programming Languages  Here is collection   of quotes about programming language</description>
-<content:encoded>
-<![CDATA[<h2>Programming Languages</h2>
-
-<p>Here is <a href="http://www.scriptol.com/programming/quotes.php">collection</a> 
- of quotes about programming languages. For example,</p>
-
-<blockquote>
-  <p>"A C program is like a fast dance on a newly waxed dance floor by people carrying razors."</p>
-  
-  <p>-- Waldi Ravens. Programmer.</p>
-</blockquote>
-
-<p>and</p>
-
-<blockquote>
-  <p>"The latest new features in C++ are designed to fix the previously new features in C++."</p>
-  
-  <p>-- David Jameson. Author.</p>
-</blockquote>
-
-<h2>The Art of War</h2>
-
-<p>First of all, I'm a pacifist. And actually, Sun Tzu is also a pacifist in some sense. He said,</p>
-
-<blockquote>
-  <p>"
-  凡用兵之法：全國為上，破國次之。全軍為上，破軍次之。全旅為上，破旅次之。全卒為上，破卒次之。全伍為上，破伍次之。是故，百戰百勝，非善之善者也；不戰而勝，善之善者也。
-  "</p>
-</blockquote>
-
-<p>In English, it means</p>
-
-<blockquote>
-  <p>"
-  In the practical art of war, the best thing of all is to take the enemy's country whole and intact; to shatter and destroy it is not so good. So, too, it is better to recapture an army entire than to destroy it, to capture a regiment, a detachment or a company entire than to destroy them.
-  Hence to fight and conquer in all your battles is not supreme excellence; supreme excellence consists in breaking the enemy's resistance without fighting.
-  "</p>
-</blockquote>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Keep up-to-date</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0006.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0006.html</guid>
-<pubDate>Thu, 12 Jul 2012 06:00:00 +0000</pubDate>
-<description>Never too old to learn  Today, I did a presentation about linear solvers on GPU.</description>
-<content:encoded>
-<![CDATA[<h2>Never too old to learn</h2>
-
-<p>Today, I did a presentation about <a href="http://www.cse.msu.edu/~wangyua6/presentation/gpusolver.html">linear solvers on GPU</a>. I'm not gonna babble what I talked on this topic. The process of making this presentation is much more interesting.</p>
-
-<p>So, to make the slides for this presentation, I tried a new tool - <a href="http://github.com/onesuper/weakpoint">weakpoint</a>,
-which I was looking for for a while. And it's also a fun experience to learn how to play with <a href="http://github.com/">github</a>. One "side effect" is that it forces me to pick up my "hobby" of <a href="http://www.gnu.org/software/emacs/">Emacs</a>.</p>
-
-<h2><a href="http://en.wikipedia.org/wiki/Furuhata_Ninzabur%C5%8D">Furuhata</a></h2>
-
-<p><img src="http://upload.wikimedia.org/wikipedia/en/6/6e/Ninzaburo_Furuhata_in_Case_Closed.jpg" alt="Furuhata" title="" /></p>
-
-<p><embed src="http://www.xiami.com/widget/122698_1771062672/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent"></embed></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Jacobi iteration on GPU</title>
-<link>http://www.egr.msu.edu/~wangyua6/jacboi_gpu.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/jacboi_gpu.html</guid>
-<pubDate>Wed, 11 Jul 2012 06:00:00 +0000</pubDate>
-<description>Source Code  Here it is. [download]     Overview   while ( err &gt; ERROR_TOL) /</description>
-<content:encoded>
-<![CDATA[<h2>Source Code</h2>
-
-<p>Here it is. [<a href="https://dl.dropbox.com/u/3461566/jacobi.cu">download</a>]</p>
-
-<p><a name="overview"> </a></p>
-
-<h2>Overview</h2>
-
-<pre class="prettyprint" ><code> while ( err &gt; ERROR_TOL) // do the iteration untill err is less than tolerance
- {
-      // 1. Copy X to x_old
-      for (int i =0; i &lt; dim; i++)
-      {
-           x_old[i] = X[i];
-      }
-      // 2. Compute X by A x_old
-
-      cudaMemcpy( X_old_d, x_old, sizeof(float) * dim, cudaMemcpyHostToDevice);
-      matMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(LU_d, X_old_d, tmp, dim, dim); // use x_old to compute LU X_old and store the result in tmp
-      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(B_d, tmp, X_d, dim);        // get the (B - LU X_old), which is stored in X_d
-      diaMultVec&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(diag_d, X_d, dim);         // get the new X
-
-      // 3. copy the new X back to the Host Memory
-      cudaMemcpy( X, X_d, sizeof(float) * dim, cudaMemcpyDeviceToHost);
-
-      // 4. calculate the norm of X_new - X_old
-      substract&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(X_old_d, X_d, tmp, dim);
-      VecAbs&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
-      VecMax&lt;&lt;&lt;dimB, dimT&gt;&gt;&gt;(tmp, dim);
-
-      // copy the max value from Device to Host
-
-      cudaMemcpy( max, tmp, sizeof(float), cudaMemcpyDeviceToHost);
-      err = (*max);
- }
-</code></pre>
-
-<p><a name="multiply"> </a></p>
-
-<h2>Matrix multiply vector</h2>
-
-<pre class="prettyprint" ><code>__global__ void matMultVec( float * mat_A, 
-                            float * vec, 
-                            float * rst, 
-                            int dim_row, 
-                            int dim_col)
-{
-     int rowIdx = threadIdx.x + blockIdx.x * blockDim.x; // Get the row Index 
-     int aIdx;
-     while( rowIdx &lt; dim_row)
-     {
-          rst[rowIdx] = 0; // clean the value at first
-          for (int i = 0; i &lt; dim_col; i++)
-          {
-               aIdx = rowIdx * dim_col + i; // Get the index for the element a_{rowIdx, i}
-               rst[rowIdx] += (mat_A[aIdx] * vec[i] ); // do the multiplication
-          }
-          rowIdx += gridDim.x * blockDim.x;
-     }
-     __syncthreads();
-}
-</code></pre>
-
-<p><a name="add"> </a></p>
-
-<h2>Matrix addition/substraction</h2>
-
-<pre class="prettyprint" ><code> __global__ void substract(float *a_d, 
-                           float *b_d, 
-                           float *c_d, 
-                           int dim)
- {
-      int tid = threadIdx.x + blockIdx.x * blockDim.x;
-      while ( tid &lt; dim )
-      {
-           c_d[tid] = a_d[tid] - b_d[tid];
-           tid += gridDim.x * blockDim.x;
-      }
- }
-</code></pre>
-
-<p><a name="norm"> </a></p>
-
-<h2>Vector Norm</h2>
-
-<pre class="prettyprint" ><code>__global__ void VecMax( float * vec,  int dim)
-{
-     int tid = threadIdx.x + blockIdx.x * blockDim.x;
-     while (dim &gt; 1)
-     {
-          int mid = dim / 2; // get the half size
-          if ( tid &lt; mid)    // filter the active thread
-          {
-               if ( vec[tid] &lt; vec[tid+mid] ) // get the larger one between vec[tid] and vec[tid+mid]
-                    vec[tid] = vec[tid+mid];  // and store the larger one in vec[tid]
-          }
-
-          //deal with the odd case
-          if ( dim % 2 )       // if dim is odd...we need care about the last element
-          {
-               if ( tid == 0 ) // only use the vec[0] to compare with vec[dim-1]
-               {
-                    if ( vec[tid] &lt; vec[dim-1] )
-                         vec[tid] = vec[dim-1];
-               }
-          }
-
-          __syncthreads(); // sync all threads
-          dim /= 2;        // make the vector half size short.
-     }
-}
-</code></pre>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Computer Graphics in Movie</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0005.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0005.html</guid>
-<pubDate>Sun, 08 Jul 2012 06:00:00 +0000</pubDate>
-<description>Ahek-ahek, so computer graphics, uh?  Well, today I was asked why the digital ef</description>
-<content:encoded>
-<![CDATA[<h2>Ahek-ahek, so computer graphics, uh?</h2>
-
-<p>Well, today I was asked why the digital effects in Chinese TV shows are so cheap?
-Actually, one reason is that it's really "cheap" indeed. <a href="http://en.wikipedia.org/wiki/Computer-generated_imagery">CGI</a> ( computer-generated imagery ) actually is an expensive technique to use.</p>
-
-<h2>So, I'm wondering how it is used?</h2>
-
-<p>Here is a simple video showing how computer graphics is used in film production. ( Actually, this video is  using a portion of CG techniques.)</p>
-
-<p><iframe width="640" height="360" src="http://www.youtube.com/embed/dtzgrVzdpmM?rel=0" frameborder="0" allowfullscreen></iframe></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Origami</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0004.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0004.html</guid>
-<pubDate>Thu, 05 Jul 2012 06:00:00 +0000</pubDate>
-<description>Ah, is that just a simple game?  When we talk about Origami,  what are we talkin</description>
-<content:encoded>
-<![CDATA[<h2>Ah, is that just a simple game?</h2>
-
-<p>When we talk about <a href="http://en.wikipedia.org/wiki/Origami">Origami</a>, 
-what are we talking about? For most of us, the "Origami" in our brain looks like this.</p>
-
-<p><img src="http://dl.dropbox.com/u/3461566/img/9-110301214930.png" alt="Paper plane" title="" /></p>
-
-<p>And some of us are probably able to do something a bit more complicated, like,</p>
-
-<p><iframe src="http://player.vimeo.com/video/29805315" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
-
-<p>However, is origami only for fun?</p>
-
-<h2>A bit more serious</h2>
-
-<p>Credit to <a href="http://www2.eng.cam.ac.uk/~ms652/">Mark Schenk</a>, some people have already been studying origami in engineering.</p>
-
-<p><video controls width="352px" height="288px" muted>
-<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.webm" type="video/webm; codecs=vorbis,vp8">
-<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.ogv" type="video/ogg; codecs=theora,vorbis">
-<source src="http://www2.eng.cam.ac.uk/~ms652/files/miura_flexibility.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2">
-</video></p>
-
-<h2>More?</h2>
-
-<p>Here is more about <a href="http://www.origami-resource-center.com/origami-science.html">Serious Origami</a></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Slam Dunk</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0003.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0003.html</guid>
-<pubDate>Wed, 04 Jul 2012 06:00:00 +0000</pubDate>
-<description>What recalls me?  Occasionally, I found this video.    My comment  Yeah, it's be</description>
-<content:encoded>
-<![CDATA[<h2>What recalls me?</h2>
-
-<p>Occasionally, I found <a href="www.yinyuetai.com/video/42613">this video</a>.</p>
-
-<p><embed src="http://player.yinyuetai.com/video/player/42613/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed></p>
-
-<h2>My comment</h2>
-
-<p>Yeah, it's been quite a while since last time I played basketball. Like most 80s "young" people, I was impacted a lot by the popular cartoon <a href="http://en.wikipedia.org/wiki/Slam_dunk">Slam Dunk</a>. I can still remember the golden old time when I save my allowance for breakfast to collect the complete comics. This video recalls me so much memory about childhood and teenager. Just a blink, I'm a graduate student now and working on "Permanent head damage". Anyway, it's not good to always live in yeasterday, since Einsten said:</p>
-
-<p><em>Learn from yesterday, live for today, hope for tomorrow.</em></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>A little hack</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0002.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0002.html</guid>
-<pubDate>Tue, 03 Jul 2012 06:00:00 +0000</pubDate>
-<description>Emacs's today function  pueblo needs a header as follows to make every post nice</description>
-<content:encoded>
-<![CDATA[<h2>Emacs's <strong>today</strong> function</h2>
-
-<p><a href="http://mikeshea.net/pueblo.html">pueblo</a> needs a header as follows to make every post nice.</p>
-
-<pre class="prettyprint" ><code>Title: A little hack
-Author: doubletony
-Date:  3 July 2012
-</code></pre>
-
-<p>However, manually typing the repeated information seems not reasonable
-to me :) Thus, the first thing came up to me was how to avoid typing
-the date. Thanks to
-<a href="http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
-">this post</a>, I got my today function working nicely.</p>
-
-<pre class="prettyprint" ><code>(defun today ()
-"Insert string for today's date nicely formatted in American style,
-e.g. Sunday, September 17, 2000."
-      (interactive)                 ; permit invocation in minibuffer
-      (insert (format-time-string "%e %B %Y")))
-</code></pre>
-
-<h2>YASnippet</h2>
-
-<p>After this tiny progress, it's time to make the entire header info be
-a snippet. <a href="https://github.com/capitaomorte/yasnippet">YASnippet</a>
-does have several snippet for markdown-mode. It should be easy to
-follow the snippet of "<em>ol</em>" (order list) to create my snippet for
-header. Shortly, I came up the following snippet:</p>
-
-<pre class="prettyprint" ><code># name: head for post on pblog
-# key: head
-# --
-Title: ${}
-Author: doubletony
-Date: `(today)`
-
-$0
 </code></pre>]]>
 </content:encoded>
 </item>

@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>[IMO 2012] Problem 4</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="sons-of-obsidian.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="prettify.js"></script>
+<link rel="alternate" type="application/rss+xml" title="[IMO 2012] Problem 4" href="index.xml">
+<meta name="viewport" content="user-scalable=yes, width=device-width" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33129226-1']);
+_gaq.push(['_trackPageview']);
+(function() {  var ga = document.createElement('script');
+ ga.type = 'text/javascript';
+ ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+     <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+   all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+   });
+</script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
+<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
+
+</head>
+<body onload="prettyPrint()">
+
+<div class="article_container">
+
+<p class="return_link">
+<a href="index.html">Back to home</a>
+</p>
+
+<div class="article">
+<h1>[IMO 2012] Problem 4</h1>
+<p>by <a href="http://www.cse.msu.edu/~wangyua6">doubletony</a> on 8 August 2012</p>
+<h2>Problem</h2>
+
+<p>Find all functions $ f: \mathbb{Z} \to \mathbb{Z} $ such that, for all integers $a,b,c$ that
+satisfy $a+b+c=0$, the following equality holds:</p>
+
+<p>$$ {f(a)}^2 + {f(b)}^2 + {f(c)}^2 = 2{f(a)}{f(b)} + 2{f(b)}{f(c)} + 2{f(c)}{f(a)} $$</p>
+
+<h2>Some simple results</h2>
+
+<p>First, let $a=b=c=0$ and we will have  $f(0)=0$.</p>
+
+<p>Second, Set $c=0$ and $b=-a$, we get $f(a)=f(-a)$ (wow,it's an even function).</p>
+
+<p>Then, if we replace $c$ by $a+b$ (since $f(c)=f(-a-b)=f(a+b)$), we can obtain the following equality:</p>
+
+<p>$$ {(f(a+b) - (f(a)+f(b))) }^2 = 4f(a)f(b) $$</p>
+
+<h2>Find the recurrence relation</h2>
+
+<p>Now, we have enough knowledge to analyze the properties of function $f$.</p>
+
+<p><em>First</em>, we have $f(z) \geq 0$  for all $z \in \mathbb{z}$ or  $f(z) \leq 0$  for all $z \in \mathbb{z}$
+It's not difficult to see since if we can find two values $z_1, z_2$ having opposite signs, then 
+$4f(z_1)f(z_2) &lt; 0$ which is impossible.</p>
+
+<p><em>Second</em>, if we have a non-negative function $f$ as a solution, then $g(z)=-f(z)$ is also a solution.
+It's still not difficult to see since each term in the original equality is of order two.</p>
+
+<p>If we assume $f$ is a non-negative solution, we can take out the square safely to obtain the following equality:</p>
+
+<p>$$ f(a+b) - (f(a)+f(b)) = \pm 2\sqrt{f(a)f(b)} $$</p>
+
+<p>which also means</p>
+
+<p>$$ f(a+b) = (\sqrt{f(a)} \pm \sqrt{f(b)})^2$$</p>
+
+<p>Replace $b$ by $1$, we can get the recurrence relation:</p>
+
+<p>$$ f(a+1) = (\sqrt{f(a)} \pm \sqrt{f(1)})^2$$</p>
+
+<p>To make it simple, we can replace function $f$ by a function $g$, where $f(a) = g^2(a), g(a) \geq 0$. (Think: why can we do this?)</p>
+
+<p>Now, the equality will look like $ g^2(a+1) = ( g(a) \pm g(1) )^2 $, which means</p>
+
+<p>$$ g(a+1) = \pm (g(a) \pm g(1) )  $$</p>
+
+<h2>All solutions?</h2>
+
+<p>Well, I will leave it there. (HINT: there are two classes of non-trivial solutions.)</p>
+</div>
+<div class="article">
+<p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
+<p>Powered by <a href="http://mikeshea.net/pueblo.html">Pueblo</a></p>
+</div>
+</body>
+</html>
