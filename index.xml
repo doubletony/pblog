@@ -9,9 +9,164 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 <title>Watch back!</title>
 <link>http://www.egr.msu.edu/~wangyua6/</link>
 <description>Why serious?!</description>
-<pubDate>Sun, 17 Mar 2013 03:34:15 GMT</pubDate>
+<pubDate>Tue, 23 Jul 2013 00:49:49 GMT</pubDate>
 <language>en</language>
 <atom:link href="http://www.egr.msu.edu/~wangyua6/index.xml" rel="self" type="application/rss+xml" />
+
+<item>
+<title>Samsung Galaxy Note 10.1 Screen Replacement</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0024.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0024.html</guid>
+<pubDate>Mon, 22 Jul 2013 06:00:00 +0000</pubDate>
+<description>Oops...  Last Tuesday, my tablet slipped into ground, and the screen was broken,</description>
+<content:encoded>
+<![CDATA[<h2>Oops...</h2>
+
+<p>Last Tuesday, my tablet slipped into ground, and the screen was broken, literally.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000652.jpg" alt="" title="" /></p>
+
+<p>Unfortunately, our university compute store doesn't have any service for Samsung tablets.
+The place the computer store guy recommended may charge more than 150 bucks.
+Well, after Bing-ing a while, I decided to fix it by myself. The cost is really cheap, less than 30 bucks for the screen digitizer, and one hour (as estimated) according to the following video.</p>
+
+<p><a href="http://www.youtube.com/watch?v=PUyI74c0DhE">Video: Samsung Galaxy Note 10.1 N8000/8010/8013 Disassembly &amp; Assembly - Touch &amp; Display Screen Replacement </a></p>
+
+<h2>Steps</h2>
+
+<ul>
+<li>Remove the cover</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000659.jpg" alt="" title="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000660.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Remove the battery and motherboard</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000662.jpg" alt="" title="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000663.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Remove the digitizer</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000664.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Done</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000665.jpg" alt="" title="" /></p>]]>
+</content:encoded>
+</item>
+
+<item>
+<title>[Code] Count the number of inversions</title>
+<link>http://www.egr.msu.edu/~wangyua6/doodle0023.html</link>
+<guid>http://www.egr.msu.edu/~wangyua6/doodle0023.html</guid>
+<pubDate>Sun, 17 Mar 2013 06:00:00 +0000</pubDate>
+<description>Problem Statement  Given an unsorted array of distinct integers, find the number</description>
+<content:encoded>
+<![CDATA[<h2>Problem Statement</h2>
+
+<p>Given an unsorted array of distinct integers, find the number of inversions. (Check the full definition <a href="http://en.wikipedia.org/wiki/Inversion_(discrete_mathematics">here</a>) For example, given "3 1 2 5 4", we have three inversions "3 1", "3 2" and "5 4".</p>
+
+<h2>Famous Solution</h2>
+
+<p>We know that the brute-force way has the time complexity of $O(n^2)$, where $n$ is the number of integers. Well, the famous optimal solution based on divide-and-conquer is $O(nlog(n))$. However, I'm going to show my thoughts.</p>
+
+<p><strong>Update</strong>: Unfortunately, after finishing this post, I found a much more compressive article about this problem. -_-|| Check it <a href="http://www.yeminghu.com/?p=34">here</a>.</p>
+
+<h2>Looks-so-nice one</h2>
+
+<p>This solution looks so nice at first glance. Unfortunately, it works as bad as the brute-force. However, the idea is worth to be known. First observation is that if we know the index of the minimum integer, than we know how many inversions are related to it. Yes, the number is exactly the index. (Well, computer guys should be comfortable with 0-index array.) Now, if we remove this minimum, and repeat this step. We should be able to get the total number of inversions. It doesn't look nice at all. Why? It's still $O(n^2)$. To an experienced programmer, there is a scent of using a min-heap somehow to make the average time of finding minimum element $O(log(n))$.</p>
+
+<h2>Realistic one</h2>
+
+<p>The second method is not related to the above one at all. It's based on an auxiliary binary search tree. The tree node will store necessary information to compute the inversion number. When inserting an new node into a BST, if we can easily know how many nodes are greater than this one, then we know the number of inversions caused by this node. It's not hard to do. For each node, we only need to store the number of nodes in it right subtree plus itself.</p>
+
+<pre class="prettyprint" ><code>class TreeNodeInverse
+{
+
+public:
+    TreeNodeInverse * left;
+    TreeNodeInverse * right;
+    int key;
+    int counter;
+
+    TreeNodeInverse(int k)
+    {
+        key = k;
+        counter = 1;
+        left = right = NULL;
+    }
+
+};
+</code></pre>
+
+<p>Now, we gradually insert each integer in its original order. When inserting a integer, we count the number of inversions along the traversing path.</p>
+
+<pre class="prettyprint" ><code>int getNumOfInversion( vector&lt;int&gt; nums )
+{
+    TreeNodeInverse * root = new TreeNodeInverse(nums[0]);
+    int counter = 0;
+    for (int i = 1; i &lt; nums.size(); i++)
+    {
+        int invCounter = 0;
+        InsertBSTInverse(root, nums[i], invCounter);
+        counter += invCounter;
+    }
+    return counter;
+}
+</code></pre>
+
+<p>The crucial thing here is how to do the insertion and counting? Actually, it's not that complicated. When traversing along a node's right child, we increase this node's counter by 1 since the new node will belong to its right subtree; when traversing along a node's left child, we increase the inversion counter by this node's counter of right children.</p>
+
+<pre class="prettyprint" ><code>void InsertBSTInverse(TreeNodeInverse * root, int key, int &amp;counter)
+{
+    if ( root-&gt;key &gt; key)
+    {
+        // go left
+        counter += root-&gt;counter;
+        if ( root-&gt;left != NULL )
+        {
+            InsertBSTInverse(root-&gt;left, key, counter);
+        }
+        else
+        {
+            TreeNodeInverse * node = new TreeNodeInverse(key);
+            root-&gt;left = node;
+        }
+    }
+    else
+    {
+        // go right
+        root-&gt;counter++;
+        if ( root-&gt;right != NULL )
+        {
+            InsertBSTInverse(root-&gt;right, key, counter);
+        }
+        else
+        {
+            TreeNodeInverse * node = new TreeNodeInverse(key);
+            root-&gt;right = node;
+        }
+    }
+
+}
+</code></pre>
+
+<p>Done!</p>
+
+<h2>Comments</h2>
+
+<p>Obviously, there are issues of this algorithm making it not optimal. First, the worst case is $O(n^2)$ when the input will generate a not well-balanced tree. Second, it's definitely a serial algorithm. So, we will lose the performance improvement from parellization.</p>]]>
+</content:encoded>
+</item>
 
 <item>
 <title>Exhausted</title>
@@ -556,88 +711,6 @@ free to use. Enjoy!</p>
 <p><a href="http://jing.fm/?e1pfVhdBFg4K">http://jing.fm/?e1pfVhdBFg4K</a></p>
 
 <p><img src="http://dl.dropbox.com/u/3461566/img/Jing_Music.png" alt="Jing.fm" title="" /></p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>[VirtualBox] VT-x is not available </title>
-<link>http://www.egr.msu.edu/~wangyua6/virtualbox.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/virtualbox.html</guid>
-<pubDate>Thu, 26 Jul 2012 06:00:00 +0000</pubDate>
-<description>Quick fix  Make sure that the memory of your virtual machine is a bit smaller th</description>
-<content:encoded>
-<![CDATA[<h2>Quick fix</h2>
-
-<p>Make sure that the memory of your virtual machine is a bit smaller than
-than 4GB (4096 MB). Otherwise, that's the reason why you get this
-error message:</p>
-
-<blockquote>
-  <p>"VT-x is not available.(VERR_VMX_NO_VMX) "</p>
-</blockquote>
-
-<p>To fix it, just set a smaller amount of memory (e.g. 3096 MB) and then
-you will get rid of this error. (Please note that set the memory as
-something like (4095 MB or 4000 MB) still won't work.)</p>
-
-<p>If you already set the memory below to 4GB and still have this
-problem, google a bit more then. ( sorry, this post is not helpful :( )</p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Eigen: a brief intro </title>
-<link>http://www.egr.msu.edu/~wangyua6/eigen_lib.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/eigen_lib.html</guid>
-<pubDate>Wed, 25 Jul 2012 06:00:00 +0000</pubDate>
-<description>Emm, what is Eigen?  Well, since you didn't skip this paragraph, it's necessary </description>
-<content:encoded>
-<![CDATA[<h2>Emm, what is Eigen?</h2>
-
-<p>Well, since you didn't skip this paragraph, it's necessary to introduce a bit what Eigen is. I quote what is showed on its <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">official website</a>,</p>
-
-<blockquote>
-  <p>"Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms."</p>
-</blockquote>
-
-<h2>Why use Eigen?</h2>
-
-<blockquote>
-  <p>"I need a sparse linear solver."</p>
-</blockquote>
-
-<p>From my personal experience, one of my projects was using <a href="http://www.tau.ac.il/~stoledo/taucs/">TAUCS</a>, which has been unsupported for a very long time. It's not working quite well as long as the project getting larger. Finally, I decided to switch to something else which is a bit more modern.</p>
-
-<p>Another thing made me happy is that Eigen is portable. There is no hassle to link a bunch of lib files (.lib or .a). Thus, it's fairly easy to use. Just download it, extract it, put it under my project directory and use it. No configuration, no building stuff.</p>
-
-<h2>Now, show me some examples?</h2>
-
-<p>Okey-dokey, I'll show a piece of code while the <a href="http://eigen.tuxfamily.org/dox/">official document</a> 
- of Eigen is also very helpful. Some code is able to be compiled on both Eigen 3.1.1 and Eigen 3.0. However, the program may have problems at running time. Hence, to save the trouble, I should declare that my code is working on Eigen 3.1.1, which is released on 22 July 2012. (Yeah, I like being up-to-date.)</p>
-
-<h3>Compute Singular values</h3>
-
-<pre class="prettyprint" ><code>#include "Eigen/Dense"
-void SVD_eigen(double a[3][3], double sigma[3])
-{
-     Eigen::Matrix3d A;
-     for (int i = 0; i &lt; 3; i++)
-     {
-          for (int j = 0; j &lt; 3; j++)
-          {
-               A(i,j) = a[i][j];
-          } //end of j
-     } //end of i
-
-     Eigen::JacobiSVD&lt;Eigen::Matrix3d&gt; svd(A);
-     Eigen::Vector3d sgm = svd.singularValues();
-
-     for (int j = 0; j &lt; 3; j++)
-     {
-          sigma[j] = sgm[j];
-     }
-}
-</code></pre>]]>
 </content:encoded>
 </item>
 
