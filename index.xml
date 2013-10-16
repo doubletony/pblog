@@ -7,16 +7,16 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 
 <channel>
 <title>Watch back!</title>
-<link>http://www.egr.msu.edu/~wangyua6/</link>
+<link>http://doubletony-pblog.azurewebsites.net/</link>
 <description>Why serious?!</description>
-<pubDate>Tue, 23 Jul 2013 00:49:49 GMT</pubDate>
+<pubDate>Wed, 16 Oct 2013 21:57:31 GMT</pubDate>
 <language>en</language>
-<atom:link href="http://www.egr.msu.edu/~wangyua6/index.xml" rel="self" type="application/rss+xml" />
+<atom:link href="http://doubletony-pblog.azurewebsites.net/index.xml" rel="self" type="application/rss+xml" />
 
 <item>
-<title>Samsung Galaxy Note 10.1 Screen Replacement</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0024.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0024.html</guid>
+<title>Samsung Galaxy Note 10.1 Screen Replacement</title>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0024.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0024.html</guid>
 <pubDate>Mon, 22 Jul 2013 06:00:00 +0000</pubDate>
 <description>Oops...  Last Tuesday, my tablet slipped into ground, and the screen was broken,</description>
 <content:encoded>
@@ -65,9 +65,9 @@ Well, after Bing-ing a while, I decided to fix it by myself. The cost is really 
 </item>
 
 <item>
-<title>[Code] Count the number of inversions</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0023.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0023.html</guid>
+<title>[Code] Count the number of inversions</title>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0023.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0023.html</guid>
 <pubDate>Sun, 17 Mar 2013 06:00:00 +0000</pubDate>
 <description>Problem Statement  Given an unsorted array of distinct integers, find the number</description>
 <content:encoded>
@@ -170,8 +170,8 @@ public:
 
 <item>
 <title>Exhausted</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0022.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0022.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0022.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0022.html</guid>
 <pubDate>Tue, 30 Oct 2012 06:00:00 +0000</pubDate>
 <description>Passed my Comprhensive Exam  I'm happy.</description>
 <content:encoded>
@@ -183,8 +183,8 @@ public:
 
 <item>
 <title>Bibtex: "I found no \\bibdata command"</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0021.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0021.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0021.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0021.html</guid>
 <pubDate>Sun, 16 Sep 2012 06:00:00 +0000</pubDate>
 <description>Problem  I recently use emacs and auctex to write latex document. Something weir</description>
 <content:encoded>
@@ -206,8 +206,8 @@ public:
 
 <item>
 <title>A simple three.js demo</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0020.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0020.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0020.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0020.html</guid>
 <pubDate>Sat, 08 Sep 2012 06:00:00 +0000</pubDate>
 <description>What is three.js?  I'm not a good story teller. More details on the project page</description>
 <content:encoded>
@@ -229,8 +229,8 @@ demo by adding random color. <a href="http://www.egr.msu.edu/~wangyua6/demo/">En
 
 <item>
 <title>[Emacs] C-n and C-p</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0019.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0019.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0019.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0019.html</guid>
 <pubDate>Tue, 28 Aug 2012 06:00:00 +0000</pubDate>
 <description>Purpose  In most cases, C-n and C-p work well enough to go to next and previous </description>
 <content:encoded>
@@ -268,8 +268,8 @@ However, I'm a lazy one.  Why don't simply bind a new keystroke to do that?</p>
 
 <item>
 <title>My first chrome extension</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0018.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0018.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0018.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0018.html</guid>
 <pubDate>Sun, 26 Aug 2012 06:00:00 +0000</pubDate>
 <description>Just a re-post  It's original posted on my another blog in Chinese.  Motivation </description>
 <content:encoded>
@@ -298,8 +298,8 @@ Document and around 10 mintues to write up the extension. Yeah, I'm kind of show
 
 <item>
 <title>Again, Jacobi iteration on GPU</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0017.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0017.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0017.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0017.html</guid>
 <pubDate>Wed, 15 Aug 2012 06:00:00 +0000</pubDate>
 <description>What's updated?  Here is my old post. The purpose of that post is just to provid</description>
 <content:encoded>
@@ -408,8 +408,8 @@ __global__ void VecMaxOneStepCompare( float * vec,  int dim)
 
 <item>
 <title>cling - An interactive C++ interpreter</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0016.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0016.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0016.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0016.html</guid>
 <pubDate>Tue, 14 Aug 2012 06:00:00 +0000</pubDate>
 <description>I literally understand the title, so what's that?  Well, I like python 's intera</description>
 <content:encoded>
@@ -442,8 +442,8 @@ to include some head files as default.</p></li>
 
 <item>
 <title>Binary trees and triangle dissections</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0015.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0015.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0015.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0015.html</guid>
 <pubDate>Thu, 09 Aug 2012 06:00:00 +0000</pubDate>
 <description>What's the problem?  Actually, the following problem is from the epic book - The</description>
 <content:encoded>
@@ -468,8 +468,8 @@ Can you find the relation between the following stuff and a binary tree?</p>
 
 <item>
 <title>[IMO 2012] Problem 4</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0014.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0014.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0014.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0014.html</guid>
 <pubDate>Wed, 08 Aug 2012 06:00:00 +0000</pubDate>
 <description>Problem  Find all functions $ f: \mathbb{Z} \to \mathbb{Z} $ such that, for all </description>
 <content:encoded>
@@ -527,8 +527,8 @@ It's still not difficult to see since each term in the original equality is of o
 
 <item>
 <title>[IMO 2012] Problem 2</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0013.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0013.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0013.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0013.html</guid>
 <pubDate>Tue, 07 Aug 2012 06:00:00 +0000</pubDate>
 <description>Problem  Let $ n \geq 3 $ be an integer, and let $ a_2, a_3, \cdots , a_n$ be po</description>
 <content:encoded>
@@ -557,8 +557,8 @@ $ a_2 a_3 \cdots a_n = 1 $. Prove that</p>
 
 <item>
 <title>Last non-zero digit of a factorial</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0012.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0012.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0012.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0012.html</guid>
 <pubDate>Sun, 05 Aug 2012 06:00:00 +0000</pubDate>
 <description>What's the problem?  Given a number $ n $, find the last non-zero digit of $ n! </description>
 <content:encoded>
@@ -689,8 +689,8 @@ space in the margin to write it :)</p>]]>
 
 <item>
 <title>Recommend a decent music radio</title>
-<link>http://www.egr.msu.edu/~wangyua6/doodle0011.html</link>
-<guid>http://www.egr.msu.edu/~wangyua6/doodle0011.html</guid>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0011.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0011.html</guid>
 <pubDate>Fri, 03 Aug 2012 06:00:00 +0000</pubDate>
 <description>Jing.fm  Jing.fm is yet another online music radio. However, the selling point i</description>
 <content:encoded>

@@ -1,13 +1,13 @@
 #!/usr/local/bin/python
 
 config = {
-	"directory": "/user/wangyua6/web/pblog", # Your markdown files and the output go here. No trailing slash.
-	"site_url": "http://www.egr.msu.edu/~wangyua6/", # site URL including an ending backslash.
+	"directory": "../pblog", # Your markdown files and the output go here. No trailing slash.
+	"site_url": "http://doubletony-pblog.azurewebsites.net/", # site URL including an ending backslash.
 	"site_title": "Watch back!", # used for the RSS feed's title.
 	"site_description": "Why serious?!", # used for the RSS feed's description.
 	"google_analytics_tag": "UA-33129226-1", # used to track the site with Google Analytics.
 	"author_name": "doubletony",
-	"author_bio_link": "http://www.cse.msu.edu/~wangyua6", # relative or absolute depending on where you keep it.
+	"author_bio_link": "http://doubletony.azurewebsites.net/", # relative or absolute depending on where you keep it.
 	"amazon_tag": " ", # Your tag to Amazon, used in the article footer and RSS feed.
 	"twitter_tag": "doubletony", # The twitter tag to which you want tweeted articles referenced.
 	"author_email": "doubletony@gmail.com", # The feedback email address.
