@@ -250,7 +250,7 @@ def rebuildsite ():
 
 	indexdata = [buildhtmlheader("index", indextitle, "none")]
 	indexdata.append(indexbody)
-	indexdata.append("<h2><a href=\"archive.html\">View All %(article_count)s Articles</a> and <a href=\"http://www.cse.msu.edu/~wangyua6/blog/\">even older Articles</a> </h2>\n" 
+	indexdata.append("<h2><a href=\"archive.html\">View All %(article_count)s Articles</a> and <a href=\"http://doubletony-blog.azurewebsites.net/\">even older Articles</a> </h2>\n" 
 		% { 'article_count': str(count) })
 	indexdata.append("Powered by <a href=\"http://mikeshea.net/pueblo.html\">Pueblo</a>")
 	indexdata.append(buildhtmlfooter("index", ""))
