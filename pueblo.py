@@ -118,7 +118,7 @@ nonentryfiles = [] # a list of text files you DON'T want to process.
 # http://pypi.python.org/pypi/Markdown/2.1.0
 #
 # This script requires markdown files using the following multimarkdown metadata as the first three lines
-# of the processed .txt markdown files as follows:
+# of the processed markdown files as follows:
 #
 # Title: the Title of your Document
 # Author: Joe Blow
@@ -137,7 +137,7 @@ nonentryfiles = [] # a list of text files you DON'T want to process.
 # Instructions
 # Install the Markdown python module.
 # Configure this script by changing the configuration variables below.
-# Put your static markdown .txt files in the configured directory
+# Put your static markdown files in the configured directory
 # Run the script either manually, with a regular cronjob, or as a CGI script.
 # View the output at index.html
 #
@@ -160,12 +160,12 @@ import markdown
 from time import gmtime, strftime, localtime, strptime
 
 def rebuildsite ():
-	textfiles = glob.glob(config["directory"]+"//*.txt")
+	textfiles = glob.glob(config["directory"]+"//*.md")
 	for nonfile in nonentryfiles:
 		textfiles.remove(config["directory"]+"/"+nonfile)
 	indexdata = []
 	
-	# Rip through the stack of .txt markdown files and build HTML pages from it.
+	# Rip through the stack of markdown files and build HTML pages from it.
 	for eachfile in textfiles:
 		eachfile = eachfile.replace(config["directory"]+"\\", "")
 		content = open(eachfile).read()
@@ -185,7 +185,7 @@ def rebuildsite ():
 		content = markdown.markdown(content[skip_index:])
 		summary = re.sub("<[^<]+?>","", content)
 		summary = summary.replace("\n", " ")[0:80]
-		htmlfilenamefull = htmlfilename = eachfile.replace(".txt", ".html")
+		htmlfilenamefull = htmlfilename = eachfile.replace(".md", ".html")
 		htmlfilename = htmlfilename.replace(config["directory"]+"/", "")
 		postname = htmlfilename.replace(".html", "")
 		# Build the HTML file, add a bit of footer text.

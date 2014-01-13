@@ -17,12 +17,13 @@ Well, after Bing-ing a while, I decided to fix it by myself. The cost is really 
 ## Steps
 
 -  Remove the cover
+
 ![](https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000659.jpg)
 
 ![](https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000660.jpg)
 
 -  Remove the battery and motherboard
--  
+  
 ![](https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000662.jpg)
 
 ![](https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000663.jpg)

@@ -1,4 +1,0 @@
-pblog
-=====
-
-personal blog

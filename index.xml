@@ -9,9 +9,60 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 <title>Watch back!</title>
 <link>http://doubletony-pblog.azurewebsites.net/</link>
 <description>Why serious?!</description>
-<pubDate>Mon, 04 Nov 2013 17:55:36 GMT</pubDate>
+<pubDate>Mon, 13 Jan 2014 15:30:34 GMT</pubDate>
 <language>en</language>
 <atom:link href="http://doubletony-pblog.azurewebsites.net/index.xml" rel="self" type="application/rss+xml" />
+
+<item>
+<title>Samsung Galaxy Note 10.1 Screen Replacement</title>
+<link>http://doubletony-pblog.azurewebsites.net/doodle0025.html</link>
+<guid>http://doubletony-pblog.azurewebsites.net/doodle0025.html</guid>
+<pubDate>Mon, 22 Jul 2013 06:00:00 +0000</pubDate>
+<description>Oops...  Last Tuesday, my tablet slipped into ground, and the screen was broken,</description>
+<content:encoded>
+<![CDATA[<h2>Oops...</h2>
+
+<p>Last Tuesday, my tablet slipped into ground, and the screen was broken, literally.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000652.jpg" alt="" title="" /></p>
+
+<p>Unfortunately, our university compute store doesn't have any service for Samsung tablets.
+The place the computer store guy recommended may charge more than 150 bucks.
+Well, after Bing-ing a while, I decided to fix it by myself. The cost is really cheap, less than 30 bucks for the screen digitizer, and one hour (as estimated) according to the following video.</p>
+
+<p><a href="http://www.youtube.com/watch?v=PUyI74c0DhE">Video: Samsung Galaxy Note 10.1 N8000/8010/8013 Disassembly &amp; Assembly - Touch &amp; Display Screen Replacement </a></p>
+
+<h2>Steps</h2>
+
+<ul>
+<li>Remove the cover</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000659.jpg" alt="" title="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000660.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Remove the battery and motherboard</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000662.jpg" alt="" title="" /></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000663.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Remove the digitizer</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000664.jpg" alt="" title="" /></p>
+
+<ul>
+<li>Done</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000665.jpg" alt="" title="" /></p>]]>
+</content:encoded>
+</item>
 
 <item>
 <title>Samsung Galaxy Note 10.1 Screen Replacement</title>
@@ -684,33 +735,6 @@ int lastNonzeroDigit(int n)
 However, the story is not end. It takes a while on my computer to get the result of 100000000.
 Can we improve it from the aspect of time-complexity? The answer is <em>YES</em> but there is not enough
 space in the margin to write it :)</p>]]>
-</content:encoded>
-</item>
-
-<item>
-<title>Recommend a decent music radio</title>
-<link>http://doubletony-pblog.azurewebsites.net/doodle0011.html</link>
-<guid>http://doubletony-pblog.azurewebsites.net/doodle0011.html</guid>
-<pubDate>Fri, 03 Aug 2012 06:00:00 +0000</pubDate>
-<description>Jing.fm  Jing.fm is yet another online music radio. However, the selling point i</description>
-<content:encoded>
-<![CDATA[<h2>Jing.fm</h2>
-
-<p><a href="http://jing.fm">Jing.fm</a> is yet another online music radio. However, the selling point is its HD music. 
-So far, it feeds me well. If you're also interested, the following invitation codes are
-free to use. Enjoy!</p>
-
-<p><a href="http://jing.fm/?e1pfVhdBGRIW">http://jing.fm/?e1pfVhdBGRIW</a></p>
-
-<p><a href="http://jing.fm/?e1pfVhdBCQcW">http://jing.fm/?e1pfVhdBCQcW</a></p>
-
-<p><a href="http://jing.fm/?e1pfVhdBDhsT">http://jing.fm/?e1pfVhdBDhsT</a></p>
-
-<p><a href="http://jing.fm/?e1pfVhdBAxMO">http://jing.fm/?e1pfVhdBAxMO</a></p>
-
-<p><a href="http://jing.fm/?e1pfVhdBFg4K">http://jing.fm/?e1pfVhdBFg4K</a></p>
-
-<p><img src="http://dl.dropbox.com/u/3461566/img/Jing_Music.png" alt="Jing.fm" title="" /></p>]]>
 </content:encoded>
 </item>
 
