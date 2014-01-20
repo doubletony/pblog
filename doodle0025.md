@@ -1,9 +1,9 @@
-Title:
+Title: Python Poem
 Author: doubletony
 Date: 13 January 2014
 
 
-## Python Haiku 1
+## [255B](http://codeforces.com/problemset/problem/255/B)
 
 	z='yx'
 	y,x=map(raw_input().count,z)

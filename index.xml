@@ -9,58 +9,23 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 <title>Watch back!</title>
 <link>http://doubletony-pblog.azurewebsites.net/</link>
 <description>Why serious?!</description>
-<pubDate>Mon, 13 Jan 2014 15:30:34 GMT</pubDate>
+<pubDate>Mon, 20 Jan 2014 07:02:51 GMT</pubDate>
 <language>en</language>
 <atom:link href="http://doubletony-pblog.azurewebsites.net/index.xml" rel="self" type="application/rss+xml" />
 
 <item>
-<title>Samsung Galaxy Note 10.1 Screen Replacement</title>
+<title>Python Poem</title>
 <link>http://doubletony-pblog.azurewebsites.net/doodle0025.html</link>
 <guid>http://doubletony-pblog.azurewebsites.net/doodle0025.html</guid>
-<pubDate>Mon, 22 Jul 2013 06:00:00 +0000</pubDate>
-<description>Oops...  Last Tuesday, my tablet slipped into ground, and the screen was broken,</description>
+<pubDate>Mon, 13 Jan 2014 06:00:00 +0000</pubDate>
+<description>255B  z='yx' y,x=map(raw_input().count,z) print abs(y-x)*z[x&gt;y] </description>
 <content:encoded>
-<![CDATA[<h2>Oops...</h2>
+<![CDATA[<h2><a href="http://codeforces.com/problemset/problem/255/B">255B</a></h2>
 
-<p>Last Tuesday, my tablet slipped into ground, and the screen was broken, literally.</p>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000652.jpg" alt="" title="" /></p>
-
-<p>Unfortunately, our university compute store doesn't have any service for Samsung tablets.
-The place the computer store guy recommended may charge more than 150 bucks.
-Well, after Bing-ing a while, I decided to fix it by myself. The cost is really cheap, less than 30 bucks for the screen digitizer, and one hour (as estimated) according to the following video.</p>
-
-<p><a href="http://www.youtube.com/watch?v=PUyI74c0DhE">Video: Samsung Galaxy Note 10.1 N8000/8010/8013 Disassembly &amp; Assembly - Touch &amp; Display Screen Replacement </a></p>
-
-<h2>Steps</h2>
-
-<ul>
-<li>Remove the cover</li>
-</ul>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000659.jpg" alt="" title="" /></p>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000660.jpg" alt="" title="" /></p>
-
-<ul>
-<li>Remove the battery and motherboard</li>
-</ul>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000662.jpg" alt="" title="" /></p>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000663.jpg" alt="" title="" /></p>
-
-<ul>
-<li>Remove the digitizer</li>
-</ul>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000664.jpg" alt="" title="" /></p>
-
-<ul>
-<li>Done</li>
-</ul>
-
-<p><img src="https://dl.dropboxusercontent.com/u/3461566/img/note-10-1-fix/WP_000665.jpg" alt="" title="" /></p>]]>
+<pre class="prettyprint" ><code>z='yx'
+y,x=map(raw_input().count,z)
+print abs(y-x)*z[x&gt;y]
+</code></pre>]]>
 </content:encoded>
 </item>
 
