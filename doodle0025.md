@@ -21,3 +21,4 @@ Date: 13 January 2014
 		print alr[x%2]
 
 	map(pr, range(n))
+
