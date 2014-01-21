@@ -74,6 +74,19 @@ s.parentNode.insertBefore(ga, s);
 y,x=map(raw_input().count,z)
 print abs(y-x)*z[x&gt;y]
 </code></pre>
+
+<h2><a href="http://codeforces.com/problemset/problem/384/A">384A</a></h2>
+
+<pre class="prettyprint" ><code>n = int(raw_input())
+print (n*n+1)/2
+al = lambda x: "C."[x%2]
+alr = ["".join(map(al, range(n))), "".join(map(al, range(1,n+1)))]
+
+def pr(x):
+    print alr[x%2]
+
+map(pr, range(n))
+</code></pre>
 </div>
 <div class="article">
 <p>Send feedback to <a href="mailto:doubletony@gmail.com">doubletony@gmail.com</a></p>
