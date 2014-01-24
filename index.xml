@@ -9,7 +9,7 @@ xmlns:dc="http://purl.org/dc/elements/1.1/"
 <title>Watch back!</title>
 <link>http://doubletony-pblog.azurewebsites.net/</link>
 <description>Why serious?!</description>
-<pubDate>Tue, 21 Jan 2014 06:49:38 GMT</pubDate>
+<pubDate>Fri, 24 Jan 2014 05:05:02 GMT</pubDate>
 <language>en</language>
 <atom:link href="http://doubletony-pblog.azurewebsites.net/index.xml" rel="self" type="application/rss+xml" />
 
@@ -38,6 +38,14 @@ def pr(x):
     print alr[x%2]
 
 map(pr, range(n))
+</code></pre>
+
+<h2><a href="http://codeforces.com/problemset/problem/94/A">94A</a></h2>
+
+<pre class="prettyprint" ><code>r=raw_input
+s=r()
+v=map(r,['']*10)
+print ''.join([str(v.index(s[i*10:(i+1)*10])) for i in range(8)])
 </code></pre>]]>
 </content:encoded>
 </item>

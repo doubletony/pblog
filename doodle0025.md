@@ -21,4 +21,10 @@ Date: 13 January 2014
 		print alr[x%2]
 
 	map(pr, range(n))
+## [94A](http://codeforces.com/problemset/problem/94/A)
+
+	r=raw_input
+	s=r()
+	v=map(r,['']*10)
+	print ''.join([str(v.index(s[i*10:(i+1)*10])) for i in range(8)])
 
