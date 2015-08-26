@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import glob
 import datetime
 allDoodle = glob.glob("doodle*.md")
